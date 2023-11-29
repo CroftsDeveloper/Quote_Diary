@@ -25,7 +25,10 @@
                 <p>Created At: {{ quote.created_at }}</p>
                 <p>Updated At: {{ quote.updated_at }}</p>
                 <a href="{{ url_for('edit_quote', quote_id=quote.id) }}" class="btn">Edit Quote</a>
-                <!-- Possible addition of a delete button/link here -->
+                <form method="POST" action="{{ url_for('delete_quote', quote_id=quote.id) }}" class="delete-form">
+                    {{ form.hidden_tag() }}
+                    <button type="submit" class="btn delete-button">Delete Quote</button>
+                </form>
             </div>
         {% else %}
             <p>No quotes available.</p>

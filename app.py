@@ -99,5 +99,14 @@ def edit_quote(quote_id):
         form.content.data = quote.content
     return render_template('edit_quote_form.html', form=form, quote=quote)
 
+@app.route('/delete_quote/<int:quote_id>', methods=['POST'])
+@login_required
+def delete_quote(quote_id):
+    quote = Quote.query.get_or_404(quote_id)
+    db.session.delete(quote)
+    db.session.commit()
+    flash('Your quote has been deleted!', 'success')
+    return redirect(url_for('dashboard'))
+
 if __name__ == '__main__':
     app.run(debug=True)
