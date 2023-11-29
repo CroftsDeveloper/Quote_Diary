@@ -7,12 +7,21 @@
     <!-- Will add CSS links or stylesheets here -->
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- Header Section with Conditional Navigation -->
     <header>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <!-- Will customise this section later -->
+                {% if current_user.is_authenticated %}
+                    <!-- Navigation for authenticated users -->
+                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <!-- Navigation for guests -->
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                {% endif %}
+                <!-- Additional links will be added here -->
             </ul>
         </nav>
     </header>

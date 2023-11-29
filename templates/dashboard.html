@@ -3,23 +3,9 @@
 {% block content %}
     <h1>Welcome to Your Quote Dashboard</h1>
     
-    <!-- Display Quotes -->
-    <div class="quote-list">
-        {% for quote in quotes %}
-            <div class="quote">
-                <p>{{ quote.content }}</p>
-                <p>Author: {{ quote.author.username }}</p>
-                <p>Created At: {{ quote.created_at }}</p>
-                <p>Updated At: {{ quote.updated_at }}</p>
-                <a href="{{ url_for('edit_quote', quote_id=quote.id) }}" class="btn">Edit Quote</a>
-                <a href="{{ url_for('delete_quote', quote_id=quote.id) }}" class="btn">Delete Quote</a>
-            </div>
-        {% endfor %}
-    </div>
-
-    <!-- Add a New Quote -->
+    <!-- Form for Adding a New Quote -->
     <h2>Add a New Quote</h2>
-    <form method="POST" action="{{ url_for('add_quote') }}">
+    <form method="POST" action="{{ url_for('dashboard') }}">
         {{ form.hidden_tag() }}
         <div class="form-group">
             {{ form.content.label(class="form-control-label") }}
@@ -29,4 +15,21 @@
             <button type="submit" class="btn">Add Quote</button>
         </div>
     </form>
+
+    <!-- Display Quotes -->
+    <div class="quote-list">
+        {% for quote in quotes %}
+            <div class="quote">
+                <p>{{ quote.content }}</p>
+                <p>Author: {{ quote.author.username }}</p> 
+                <p>Created At: {{ quote.created_at }}</p>
+                <p>Updated At: {{ quote.updated_at }}</p>
+                <a href="{{ url_for('edit_quote', quote_id=quote.id) }}" class="btn">Edit Quote</a>
+                <!-- Possible addition of a delete button/link here -->
+            </div>
+        {% else %}
+            <p>No quotes available.</p>
+        {% endfor %}
+    </div>
+
 {% endblock %}
