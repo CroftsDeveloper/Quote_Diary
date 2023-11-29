@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Edit Quote</h1>
+
+    <!-- Edit Quote Form -->
+    <form method="POST" action="{{ url_for('update_quote', quote_id=quote.id) }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.content.label(class="form-control-label") }}
+            {{ form.content(class="form-control") }}
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn">Save Changes</button>
+        </div>
+    </form>
+{% endblock %}

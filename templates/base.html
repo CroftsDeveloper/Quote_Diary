@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Quote Diary{% endblock %}</title>
+    <!-- Will add CSS links or stylesheets here -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <!-- Will customise this section later -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Content Section (This section will be extended by other templates) -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer Section / Will customise this section later -->
+    <footer>
+        <!-- footer content -->
+    </footer>
+</body>
+</html>
