@@ -1,19 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Login</h2>
-    <form method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
+    <main class="container mt-5" role="main">
+        <!-- Enhanced form heading -->
+        <h1 class="mb-4 text-center">Login</h1>
+        
+        <!-- Updating form layout with Bootstrap classes -->
+        <form method="post" class="w-50 mx-auto">
+            {{ form.hidden_tag() }}
 
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
+            <!-- Styling the username input field with Bootstrap -->
+            <div class="mb-3">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", placeholder="Enter your username") }}
+                <!-- Bootstrap styled error message for username -->
+                {% if form.username.errors %}
+                    <div class="alert alert-danger mt-2" role="alert">
+                        {{ form.username.errors[0] }}
+                    </div>
+                {% endif %}
+            </div>
 
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+            <!-- Styling the password input field with Bootstrap -->
+            <div class="mb-3">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", placeholder="Enter your password") }}
+                <!-- Bootstrap styled error message for password -->
+                {% if form.password.errors %}
+                    <div class="alert alert-danger mt-2" role="alert">
+                        {{ form.password.errors[0] }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Bootstrap styling for submit button -->
+            <div class="d-grid gap-2">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </main>
 {% endblock %}
