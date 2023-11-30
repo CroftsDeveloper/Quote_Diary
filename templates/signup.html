@@ -1,35 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <main class="container mt-5" role="main">
-        <!-- Heading -->
-        <h1 class="mb-4 text-center">Sign Up</h1>
-        
-        <!-- Updating form layout with Bootstrap classes -->
-        <form method="post" class="w-50 mx-auto">
-            {{ form.hidden_tag() }}
-            <div class="form-group mb-3">
-                {{ form.username.label(class="form-label") }}
-                {{ form.username(class="form-control", placeholder="Choose a username") }}
-                {% if form.username.errors %}
-                    <div class="error">{{ form.username.errors[0] }}</div>
-                {% endif %}
-            </div>
-            <div class="form-group mb-3">
-                {{ form.password.label(class="form-label") }}
-                {{ form.password(class="form-control", placeholder="Choose a password") }}
-                {% if form.password.errors %}
-                    <div class="error">{{ form.password.errors[0] }}</div>
-                {% endif %}
-            </div>
-            <div class="form-group mb-3">
-                {{ form.confirm_password.label(class="form-label") }}
-                {{ form.confirm_password(class="form-control", placeholder="Confirm your password") }}
-                {% if form.confirm_password.errors %}
-                    <div class="error">{{ form.confirm_password.errors[0] }}</div>
-                {% endif %}
-            </div>
-            {{ form.submit(class="btn btn-primary") }}
-        </form>
-    </main>
+<main class="container mt-5" role="main">
+    <!-- Sign Up Form Heading -->
+    <h1 class="mb-4 text-center">Sign Up</h1>
+
+    <!-- Sign Up Form -->
+    <form method="post" action="{{ url_for('signup') }}" class="w-50 mx-auto" aria-label="Sign Up Form">
+        {{ form.hidden_tag() }}
+
+        <!-- Username Input Field -->
+        <div class="mb-3">
+            {{ form.username.label(class="form-label", for="usernameInput") }}
+            {{ form.username(id="usernameInput", class="form-control", placeholder="Choose a username") }}
+            <!-- Username Error Message Display -->
+            {% if form.username.errors %}
+                <div class="alert alert-danger mt-2" role="alert">{{ form.username.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Password Input Field -->
+        <div class="mb-3">
+            {{ form.password.label(class="form-label", for="passwordInput") }}
+            {{ form.password(id="passwordInput", class="form-control", placeholder="Choose a password") }}
+            <!-- Password Error Message Display -->
+            {% if form.password.errors %}
+                <div class="alert alert-danger mt-2" role="alert">{{ form.password.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Password Confirmation Input Field -->
+        <div class="mb-3">
+            {{ form.confirm_password.label(class="form-label", for="confirmPasswordInput") }}
+            {{ form.confirm_password(id="confirmPasswordInput", class="form-control", placeholder="Confirm your password") }}
+            <!-- Confirm Password Error Message Display -->
+            {% if form.confirm_password.errors %}
+                <div class="alert alert-danger mt-2" role="alert">{{ form.confirm_password.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Sign Up Button -->
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" aria-label="Sign Up">Sign Up</button>
+        </div>
+    </form>
+
+    <!-- Sign Up Signpost -->
+    <p class="mt-4 text-center">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</main>
 {% endblock %}
