@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A personal space to store and reflect on inspiring quotes.">
+    <meta name="keywords" content="quotes, diary, reflection, personal, inspiration">
+
     <title>{% block title %}Quote Diary{% endblock %}</title>
-    <!-- Will add CSS links or stylesheets here -->
+
+    <!-- Placeholder for CSS links - need to add soon -->
 </head>
 <body>
-    <!-- Header Section with Conditional Navigation -->
-    <header>
-        <nav>
-            <ul>
-                {% if current_user.is_authenticated %}
-                    <!-- Navigation for authenticated users -->
-                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                {% else %}
-                    <!-- Navigation for guests -->
-                    <li><a href="/">Home</a></li>
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                    <li><a href="{{ url_for('signup') }}">Signup</a></li>
-                {% endif %}
-                <!-- Additional links will be added here -->
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Content Section (This section will be extended by other templates) -->
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
-
-    <!-- Footer Section / Will customise this section later -->
-    <footer>
-        <!-- footer content -->
-    </footer>
-</body>
-</html>
+        <!-- Header Section with Conditional Navigation -->
+        <header>
+            <nav>
+                <ul>
+                    {% if current_user.is_authenticated %}
+                        <!-- Navigation for authenticated users -->
+                        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <!-- Navigation for guests -->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                    {% endif %}
+                    <!-- Additional links will be added here -->
+                </ul>
+            </nav>
+        </header>
+    
+        <!-- Content Section (This section will be extended by other templates) -->
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    
+        <!-- Footer Section / Will customise this section later -->
+        <footer>
+            <!-- footer content -->
+        </footer>
+    </body>
+    </html>
+    
