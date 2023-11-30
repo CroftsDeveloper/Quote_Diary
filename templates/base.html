@@ -11,37 +11,57 @@
 
     <title>{% block title %}Quote Diary{% endblock %}</title>
 
-    <!-- Placeholder for CSS links - need to add soon -->
+    <!-- Preload custom CSS -->
+    <link rel="preload" href="{{ url_for('static', filename='style.css') }}" as="style">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
-<body>
-        <!-- Header Section with Conditional Navigation -->
-        <header>
-            <nav>
-                <ul>
+<body data-username="{{ username|default('User') }}">
+    <!-- Header Section with Conditional Navigation -->
+    <!-- Planning to enhance this with more options as the project progresses -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Quote Diary</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}
                         <!-- Navigation for authenticated users -->
-                        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
                         <!-- Navigation for guests -->
-                        <li><a href="/">Home</a></li>
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
-                        <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Signup</a></li>
                     {% endif %}
-                    <!-- Additional links will be added here -->
                 </ul>
-            </nav>
-        </header>
-    
-        <!-- Content Section (This section will be extended by other templates) -->
-        <div class="content">
-            {% block content %}{% endblock %}
+            </div>
         </div>
-    
-        <!-- Footer Section / Will customise this section later -->
-        <footer>
-            <!-- footer content -->
-        </footer>
-    </body>
-    </html>
-    
+    </nav>
+
+    <!-- Content Section (This section will be extended by other templates) -->
+    <div class="container mt-3">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer Section-->
+    <footer>
+        <!-- footer content to be considered later -->
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
