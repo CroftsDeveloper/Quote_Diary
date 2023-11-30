@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!-- Header Structure -->
+    <!-- Header with a welcoming message -->
     <header class="container mt-4 mb-3 text-center" role="banner">
-        <!-- Placeholder for future header content -->
+        <h1>Welcome to Quote Diary</h1>
+        <p>Your personal vault for your inspirational quotes.</p>
     </header>
 
     <!-- Introduction Container Structure -->
@@ -11,14 +12,21 @@
         <!-- Placeholder for my future introduction content -->
     </div>
 
-    <!-- Buttons for user actions -->
-    <div class="buttons text-center mt-4">
+    <!-- Main content based on user authentication -->
+    <main class="container mt-3" role="main">
         {% if current_user.is_authenticated %}
-            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
-            <a href="{{ url_for('dashboard') }}" class="btn">Dashboard</a>
+            <!-- Personalized greeting for authenticated users -->
+            <section class="text-center my-4" aria-label="User Greeting Section">
+                <p>Hello, {{ current_user.username }}!</p>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+            </section>
         {% else %}
-            <a href="{{ url_for('login') }}" class="btn">Login</a>
-            <a href="{{ url_for('signup') }}" class="btn">Sign Up</a>
+            <!-- Original buttons for guest users -->
+            <div class="buttons text-center mt-4">
+                <a href="{{ url_for('login') }}" class="btn">Login</a>
+                <a href="{{ url_for('signup') }}" class="btn">Sign Up</a>
+            </div>
         {% endif %}
-    </div>
+    </main>
 {% endblock %}
