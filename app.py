@@ -40,15 +40,23 @@ def signup():
     # Redirect authenticated users to the dashboard
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
+
     form = SignupForm()
     if form.validate_on_submit():
+        existing_user = User.query.filter_by(username=form.username.data).first()
+        if existing_user:
+            flash('Username already exists. Please choose a different one.', 'danger')
+            return render_template('signup.html', title='Sign Up', form=form)
+
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You can now log in.', 'success')
         return redirect(url_for('login'))
+
     return render_template('signup.html', title='Sign Up', form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
