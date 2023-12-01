@@ -20,6 +20,17 @@
                     </div>
                     {% endif %}
                 </div>
+                <!-- Bootstrap styling for quote author input field -->
+                <div class="form-group mb-3">
+                    {{ form.author.label(class="form-label", for="quoteAuthor") }}
+                    {{ form.author(id="quoteAuthor", class="form-control") }}
+                    <!-- Bootstrap alert for displaying author field errors -->
+                    {% if form.author.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.author.errors %}{{ error }}{% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
                 <!-- Submit and cancel buttons with Bootstrap styling -->
                 <div class="d-flex justify-content-between">
                     {{ form.submit(class="btn btn-primary", aria_label="Update Quote") }}

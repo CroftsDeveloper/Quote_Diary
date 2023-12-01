@@ -2,11 +2,11 @@
 
 {% block content %}
 <main class="container mt-5" role="main">
-    <!-- Dynamic greeting and welcome message for the user  will finish later! -->
+    <!-- Dynamic greeting and welcome message for the user -->
     <div class="row mb-4">
         <div class="col-12 welcome-section">
             <div class="text-center">
-                <p id="dynamicDate" class="lead"></p> <!-- Placeholder for dynamic greeting and date - will finish later! -->
+                <p id="dynamicDate" class="lead"></p> <!-- Placeholder for dynamic greeting and date -->
             </div>
         </div>
     </div>
@@ -25,6 +25,17 @@
                         {% if form.content.errors %}
                             <div class="alert alert-danger" role="alert">
                                 {% for error in form.content.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <!-- Author input field -->
+                    <div class="form-group mb-3">
+                        {{ form.author.label(class="form-label") }}
+                        {{ form.author(class="form-control") }}
+                        <!-- Display errors for author field -->
+                        {% if form.author.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in form.author.errors %}{{ error }}{% endfor %}
                             </div>
                         {% endif %}
                     </div>
@@ -58,7 +69,9 @@
                     <div class="card-body">
                         <blockquote class="blockquote mb-2">
                             <p>{{ quote.content }}</p>
-                            <footer class="blockquote-footer mt-2">{{ quote.author.username }}</footer>
+                            <footer class="blockquote-footer mt-2">
+                                {{ quote.author_name or 'Unknown' }}
+                            </footer>
                         </blockquote>
                     </div>
                     <div class="card-footer text-center">

@@ -46,6 +46,7 @@ def signup():
         if existing_user:
             flash('Username already exists. Please choose a different one.', 'danger')
             return render_template('signup.html', title='Sign Up', form=form)
+        
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
@@ -80,7 +81,7 @@ def logout():
 def dashboard():
     form = QuoteForm()
     if form.validate_on_submit():
-        new_quote = Quote(content=form.content.data, author_id=current_user.id)
+        new_quote = Quote(content=form.content.data, author_name=form.author.data, author_id=current_user.id)
         db.session.add(new_quote)
         db.session.commit()
         flash('Your quote has been added!', 'success')
@@ -95,11 +96,13 @@ def edit_quote(quote_id):
     form = QuoteForm()
     if form.validate_on_submit():
         quote.content = form.content.data
+        quote.author_name = form.author.data
         db.session.commit()
         flash('Your quote has been updated!', 'success')
         return redirect(url_for('dashboard'))
     elif request.method == 'GET':
         form.content.data = quote.content
+        form.author.data = quote.author_name
     return render_template('edit_quote_form.html', form=form, quote=quote)
 
 @app.route('/delete_quote/<int:quote_id>', methods=['POST'])
