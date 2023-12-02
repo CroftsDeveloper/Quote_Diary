@@ -1,3 +1,17 @@
+// Function for page load changes
+document.addEventListener('DOMContentLoaded', () => {
+    // Set initial opacity to 0
+    document.body.style.opacity = 0;
+
+    // After loading, gradually transition to full opacity
+    window.onload = () => {
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            document.body.style.opacity = 1;
+        }, 100);
+    };
+});
+
 // Function to confirm quote deletion
 function confirmDelete(quoteId) {
     // Confirm dialog
@@ -25,7 +39,6 @@ function confirmDelete(quoteId) {
 
 // Set up the event listener for author search input
 function setupAuthorSearch() {
-
     const authorSearchElement = document.getElementById('authorSearch');
     if (authorSearchElement) {
         // Event listener triggers when user types in the search field
@@ -47,11 +60,6 @@ function filterQuotesByAuthor() {
     });
 }
 
-// Initialize the author search feature when the document is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    setupAuthorSearch();
-});
-
 // Function to copy quote text and author to the clipboard
 function copyToClipboard(buttonElement) {
     // Find the closest quote card element
@@ -72,9 +80,36 @@ function copyToClipboard(buttonElement) {
     }).catch(err => console.error('Failed to copy: ', err));
 }
 
-// Set up event listeners when the DOM content is fully loaded
+// Set up character count functionality for given input field
+function setupCharacterCount(inputFieldId, charCountDisplayId) {
+    const inputFieldElement = document.getElementById(inputFieldId);
+    const charCountDisplay = document.getElementById(charCountDisplayId);
+
+    if (inputFieldElement && charCountDisplay) {
+        // Update character count immediately in case of pre-filled values
+        updateCharacterCount(inputFieldElement, charCountDisplay);
+
+        // Attach event listener to input field
+        inputFieldElement.addEventListener('input', () => {
+            updateCharacterCount(inputFieldElement, charCountDisplay);
+        });
+    }
+}
+
+// Update character count for a specific input field
+function updateCharacterCount(inputField, charCountDisplay) {
+    if (charCountDisplay) {
+        charCountDisplay.textContent = 'Character Count: ' + inputField.value.length;
+    }
+}
+
+// Initialise the author search and character count features when the document fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Find all copy buttons and attach the event listener
+    setupAuthorSearch();
+    setupCharacterCount('quoteContent', 'contentCharCount');
+    setupCharacterCount('authorInput', 'authorCharCount');
+
+    // Set up event listeners for copy to clipboard buttons
     const copyButtons = document.querySelectorAll('.copy-to-clipboard');
     copyButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -82,3 +117,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
