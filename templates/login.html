@@ -5,8 +5,8 @@
         <!-- Maintaining enhanced form heading -->
         <h1 class="mb-4 text-center">Login</h1>
         
-        <!-- Updated form layout with Bootstrap classes-->
-        <form method="post" class="w-50 mx-auto" aria-label="Login Form" id="loginForm">
+        <!-- Updated form layout with Bootstrap classes and added client-side validation -->
+        <form method="post" class="w-50 mx-auto needs-validation" aria-label="Login Form" id="loginForm" novalidate>
             {{ form.hidden_tag() }}
 
             <!-- Styling the username input field with Bootstrap -->
@@ -14,7 +14,6 @@
                 {{ form.username.label(class="form-label", for="usernameInput") }}
                 {{ form.username(id="usernameInput", class="form-control", placeholder="Enter your username") }}
                 <!-- Bootstrap styled error message for username -->
-                <span id="usernameError" class="error-message"></span>
                 {% if form.username.errors %}
                     <div class="alert alert-danger mt-2" role="alert">
                         {{ form.username.errors[0] }}
@@ -27,7 +26,6 @@
                 {{ form.password.label(class="form-label", for="passwordInput") }}
                 {{ form.password(id="passwordInput", class="form-control", placeholder="Enter your password") }}
                 <!-- Bootstrap styled error message for password -->
-                <span id="passwordError" class="error-message"></span>
                 {% if form.password.errors %}
                     <div class="alert alert-danger mt-2" role="alert">
                         {{ form.password.errors[0] }}

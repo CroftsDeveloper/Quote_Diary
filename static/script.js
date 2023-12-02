@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAuthorSearch();
     setupCharacterCount('quoteContent', 'contentCharCount');
     setupCharacterCount('authorInput', 'authorCharCount');
-
+    
     // Set up event listeners for copy to clipboard buttons
     const copyButtons = document.querySelectorAll('.copy-to-clipboard');
     copyButtons.forEach(button => {
@@ -26,6 +26,26 @@ document.addEventListener('DOMContentLoaded', () => {
             copyToClipboard(this);
         });
     });
+
+    // Set up event listener for form submissions
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            if (!validateLoginForm()) {
+                event.preventDefault();
+            }
+        });
+    }
+    
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(event) {
+            if (!validateSignupForm()) {
+                event.preventDefault();
+            }
+        });
+    }
 });
 
 // Function to confirm quote deletion
@@ -125,11 +145,89 @@ function updateDateAndGreeting() {
         const now = new Date();
         const hours = now.getHours();
         let greeting = hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening';
-        const dateString = now.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const dateString = now.toLocaleDateString("en-GB", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-        // Fetch the username from the body tag or a similar element
         let username = document.body.getAttribute('data-username');
         dateElement.innerHTML = `${greeting}, ${username}.<br>Today is ${dateString}.`;
     }
 }
 
+// Function to validate login form
+function validateLoginForm() {
+    const username = document.getElementById('usernameInput').value.trim();
+    const password = document.getElementById('passwordInput').value.trim();
+    let valid = true;
+
+    // Validation logic for username and password
+    if (username === '') {
+        valid = false;
+        displayError('usernameError', 'Username is required.');
+    } else {
+        clearError('usernameError');
+    }
+
+    if (password === '') {
+        valid = false;
+        displayError('passwordError', 'Password is required.');
+    } else {
+        clearError('passwordError');
+    }
+
+    // Display login error message if needed
+    if (!valid) {
+        displayError('loginError', 'Incorrect username or password. Please try again.');
+    }
+
+    return valid;
+}
+
+// Function to validate signup form
+function validateSignupForm() {
+    const username = document.getElementById('usernameInput').value.trim();
+    const password = document.getElementById('passwordInput').value.trim();
+    const confirmPassword = document.getElementById('confirmPasswordInput').value.trim();
+    let valid = true;
+
+    // Validation logic for username, password, and password confirmation
+    if (username === '') {
+        valid = false;
+        displayError('usernameError', 'Username is required.');
+    } else {
+        clearError('usernameError');
+    }
+
+    if (password === '') {
+        valid = false;
+        displayError('passwordError', 'Password is required.');
+    } else {
+        clearError('passwordError');
+    }
+
+    if (confirmPassword === '') {
+        valid = false;
+        displayError('confirmPasswordError', 'Confirm Password is required.');
+    } else if (confirmPassword !== password) {
+        valid = false;
+        displayError('confirmPasswordError', 'Passwords do not match.');
+    } else {
+        clearError('confirmPasswordError');
+    }
+
+    return valid;
+}
+
+// Function to display an error message
+function displayError(errorId, message) {
+    const errorElement = document.getElementById(errorId);
+    if (errorElement) {
+        errorElement.textContent = message;
+    }
+}
+
+// Function to clear an error message
+function clearError(errorId) {
+    const errorElement = document.getElementById(errorId);
+    if (errorElement) {
+        errorElement.textContent = '';
+    }
+}

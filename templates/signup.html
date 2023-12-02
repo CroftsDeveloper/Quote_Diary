@@ -5,35 +5,35 @@
     <!-- Sign Up Form Heading -->
     <h1 class="mb-4 text-center">Sign Up</h1>
 
-    <!-- Sign Up Form -->
-    <form method="post" action="{{ url_for('signup') }}" class="w-50 mx-auto" aria-label="Sign Up Form">
+    <!-- Enhanced Sign Up Form with client-side validation -->
+    <form method="post" action="{{ url_for('signup') }}" class="w-50 mx-auto needs-validation" aria-label="Sign Up Form" novalidate>
         {{ form.hidden_tag() }}
 
-        <!-- Username Input Field -->
+        <!-- Username Input Field with client-side validation setup -->
         <div class="mb-3">
             {{ form.username.label(class="form-label", for="usernameInput") }}
-            {{ form.username(id="usernameInput", class="form-control", placeholder="Choose a username") }}
-            <!-- Username Error Message Display -->
+            {{ form.username(id="usernameInput", class="form-control", placeholder="Choose a username", autocomplete="username") }}
+            <!-- Bootstrap styled error message for username -->
             {% if form.username.errors %}
                 <div class="alert alert-danger mt-2" role="alert">{{ form.username.errors[0] }}</div>
             {% endif %}
         </div>
 
-        <!-- Password Input Field -->
+        <!-- Password Input Field with client-side validation setup -->
         <div class="mb-3">
             {{ form.password.label(class="form-label", for="passwordInput") }}
             {{ form.password(id="passwordInput", class="form-control", placeholder="Choose a password") }}
-            <!-- Password Error Message Display -->
+            <!-- Bootstrap styled error message for password -->
             {% if form.password.errors %}
                 <div class="alert alert-danger mt-2" role="alert">{{ form.password.errors[0] }}</div>
             {% endif %}
         </div>
 
-        <!-- Password Confirmation Input Field -->
+        <!-- Password Confirmation Input Field with client-side validation setup -->
         <div class="mb-3">
             {{ form.confirm_password.label(class="form-label", for="confirmPasswordInput") }}
             {{ form.confirm_password(id="confirmPasswordInput", class="form-control", placeholder="Confirm your password") }}
-            <!-- Confirm Password Error Message Display -->
+            <!-- Bootstrap styled error message for confirm password -->
             {% if form.confirm_password.errors %}
                 <div class="alert alert-danger mt-2" role="alert">{{ form.confirm_password.errors[0] }}</div>
             {% endif %}
