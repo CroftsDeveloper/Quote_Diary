@@ -29,7 +29,6 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    # Updated to use the session.get() method
     return db.session.get(User, int(user_id))
 
 @app.route('/')
@@ -86,8 +85,11 @@ def dashboard():
         db.session.commit()
         flash('Your quote has been added!', 'success')
         return redirect(url_for('dashboard'))
+    
     user_quotes = Quote.query.filter_by(author_id=current_user.id).all()
-    return render_template('dashboard.html', quotes=user_quotes, form=form)
+
+    # Pass the username to the template
+    return render_template('dashboard.html', username=current_user.username, quotes=user_quotes, form=form)
 
 @app.route('/edit_quote/<int:quote_id>', methods=['GET', 'POST'])
 @login_required

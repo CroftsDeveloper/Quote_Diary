@@ -10,12 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.opacity = 1;
         }, 100);
     };
+
+    // Initialize the dynamic greeting based on time of day
+    updateDateAndGreeting();
+
+    // Initialize other features after DOM content is loaded
+    setupAuthorSearch();
+    setupCharacterCount('quoteContent', 'contentCharCount');
+    setupCharacterCount('authorInput', 'authorCharCount');
+
+    // Set up event listeners for copy to clipboard buttons
+    const copyButtons = document.querySelectorAll('.copy-to-clipboard');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            copyToClipboard(this);
+        });
+    });
 });
 
 // Function to confirm quote deletion
 function confirmDelete(quoteId) {
     // Confirm dialog
-    if(confirm("Are you sure you want to delete this quote?")) {
+    if (confirm("Are you sure you want to delete this quote?")) {
         // Send a POST request to the server to delete the quote
         fetch(`/delete_quote/${quoteId}`, {
             method: 'POST',
@@ -25,7 +41,7 @@ function confirmDelete(quoteId) {
             body: JSON.stringify({ 'quoteId': quoteId })
         }).then(response => {
             // Check if the deletion was successful
-            if(response.ok) {
+            if (response.ok) {
                 // Remove the quote from the display or reload the page
                 window.location.reload();
             } else {
@@ -103,18 +119,17 @@ function updateCharacterCount(inputField, charCountDisplay) {
     }
 }
 
-// Initialise the author search and character count features when the document fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    setupAuthorSearch();
-    setupCharacterCount('quoteContent', 'contentCharCount');
-    setupCharacterCount('authorInput', 'authorCharCount');
+function updateDateAndGreeting() {
+    const dateElement = document.getElementById('dynamicDate');
+    if (dateElement) {
+        const now = new Date();
+        const hours = now.getHours();
+        let greeting = hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening';
+        const dateString = now.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-    // Set up event listeners for copy to clipboard buttons
-    const copyButtons = document.querySelectorAll('.copy-to-clipboard');
-    copyButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            copyToClipboard(this);
-        });
-    });
-});
+        // Fetch the username from the body tag or a similar element
+        let username = document.body.getAttribute('data-username');
+        dateElement.innerHTML = `${greeting}, ${username}.<br>Today is ${dateString}.`;
+    }
+}
 
