@@ -22,3 +22,63 @@ function confirmDelete(quoteId) {
         });
     }
 }
+
+// Set up the event listener for author search input
+function setupAuthorSearch() {
+
+    const authorSearchElement = document.getElementById('authorSearch');
+    if (authorSearchElement) {
+        // Event listener triggers when user types in the search field
+        authorSearchElement.addEventListener('input', filterQuotesByAuthor);
+    }
+}
+
+// Filters quotes based on the author name
+function filterQuotesByAuthor() {
+    // Retrieve current search value and convert to lowercase for case-insensitive comparison
+    const searchValue = document.getElementById('authorSearch').value.toLowerCase();
+    // Select all quote cards
+    const quotes = document.querySelectorAll('.card');
+    quotes.forEach(quote => {
+        // Get the author's name and check if it includes the search value
+        const author = quote.querySelector('.blockquote-footer').innerText.toLowerCase();
+        // Display or hide the quote based on the search match
+        quote.style.display = author.includes(searchValue) ? '' : 'none';
+    });
+}
+
+// Initialize the author search feature when the document is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupAuthorSearch();
+});
+
+// Function to copy quote text and author to the clipboard
+function copyToClipboard(buttonElement) {
+    // Find the closest quote card element
+    const quoteCard = buttonElement.closest('.card');
+    
+    // Extract the quote text and author
+    const quoteText = quoteCard.querySelector('.card-body blockquote p').innerText;
+    const authorText = quoteCard.querySelector('.blockquote-footer').innerText;
+    
+    // Combine the quote and author text
+    const fullText = `"${quoteText}" — ${authorText}`;
+    
+    // Use the navigator clipboard API to copy text
+    navigator.clipboard.writeText(fullText).then(() => {
+        // Change the button text temporarily to indicate the copy action
+        buttonElement.textContent = 'Copied!';
+        setTimeout(() => buttonElement.textContent = 'Copy', 2000);
+    }).catch(err => console.error('Failed to copy: ', err));
+}
+
+// Set up event listeners when the DOM content is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Find all copy buttons and attach the event listener
+    const copyButtons = document.querySelectorAll('.copy-to-clipboard');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            copyToClipboard(this);
+        });
+    });
+});

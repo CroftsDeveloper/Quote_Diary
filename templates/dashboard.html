@@ -21,18 +21,15 @@
                     <div class="form-group mb-3">
                         {{ form.content.label(class="form-label") }}
                         {{ form.content(class="form-control") }}
-                        <!-- Display errors for content field -->
                         {% if form.content.errors %}
                             <div class="alert alert-danger" role="alert">
                                 {% for error in form.content.errors %}{{ error }}{% endfor %}
                             </div>
                         {% endif %}
                     </div>
-                    <!-- Author input field -->
                     <div class="form-group mb-3">
                         {{ form.author.label(class="form-label") }}
                         {{ form.author(class="form-control") }}
-                        <!-- Display errors for author field -->
                         {% if form.author.errors %}
                             <div class="alert alert-danger" role="alert">
                                 {% for error in form.author.errors %}{{ error }}{% endfor %}
@@ -52,8 +49,7 @@
         <h2 id="authorSearchHeading" class="visually-hidden">Search by Author</h2>
         <div class="row mb-4">
             <div class="col">
-                <input type="text" id="authorSearch" class="form-control" placeholder="Search by author name"
-                    aria-label="Search by author name">
+                <input type="text" id="authorSearch" class="form-control" placeholder="Search by author name" aria-label="Search by author name">
             </div>
         </div>
     </section>
@@ -69,17 +65,14 @@
                     <div class="card-body">
                         <blockquote class="blockquote mb-2">
                             <p>{{ quote.content }}</p>
-                            <footer class="blockquote-footer mt-2">
-                                {{ quote.author_name or 'Unknown' }}
-                            </footer>
+                            <footer class="blockquote-footer mt-2">{{ quote.author_name or 'Unknown' }}</footer>
                         </blockquote>
                     </div>
                     <div class="card-footer text-center">
-                        <!-- Adding buttons for delete and copy functionality -->
                         <div class="d-flex justify-content-center">
                             <a href="{{ url_for('edit_quote', quote_id=quote.id) }}" class="btn btn-secondary btn-sm mx-1">Edit</a>
                             <button onclick="confirmDelete('{{ quote.id }}')" class="btn btn-danger btn-sm mx-1" aria-label="Delete Quote">Delete</button>
-                            <button class="btn btn-outline-secondary btn-sm mx-1" onclick="copyToClipboard(this)" aria-label="Copy Quote">Copy</button>
+                            <button class="btn btn-outline-secondary btn-sm mx-1 copy-to-clipboard" onclick="copyToClipboard(this)" aria-label="Copy Quote">Copy</button>
                         </div>
                     </div>
                 </div>
