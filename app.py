@@ -3,6 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from dotenv import load_dotenv
 import os
+import re
 
 # Import the extensions (db and migrate)
 from extensions import db, migrate
@@ -15,7 +16,13 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+
+# Update the DATABASE_URL for Heroku
+uri = os.environ.get('DATABASE_URL')
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize extensions with the app
@@ -117,4 +124,4 @@ def delete_quote(quote_id):
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
