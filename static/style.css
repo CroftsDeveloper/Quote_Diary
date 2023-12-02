@@ -14,23 +14,109 @@ html {
     height: 100%;
 }
 
-/* Page Load Transition */
+/* Applying a flex layout to the body to manage footer and content alignment */
 body {
-    opacity: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.6;
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    background-color: #1a1a1a; 
+    color: #e0e0e0; 
+    transition: opacity 0.3s ease-in-out; 
+}
+
+/* Ensuring the body is visible after loading */
+body.loaded {
+    opacity: 1;
+}
+
+/* Main content container styling */
+.container {
+    padding: 20px;
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+/* Typography Enhancements for Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* CSS to style the introduction container */
+.intro-title {
+    font-size: 32px;
+    color: #f7f8fa;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Adjust the bottom margin of the introduction container */
+.introduction-container {
+    margin-bottom: 0;
+}
+
+.intro-text {
+    font-size: 18px;
+    color: rgb(252, 248, 248);
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 /* Dynamic Date Greeting Style */
 #dynamicDate {
-    font-size: 2.0rem; 
+    font-size: 2.0rem;
     color: #f7f8fa;
     margin-top: 20px;
     margin-bottom: 20px;
-    text-align: center; 
-
+    text-align: center;
 }
+
+/* Character count specific style */
+#contentCharCount, #authorCharCount {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000000; 
+    font-size: 0.875rem; 
+    font-weight: bold; 
+}
+
+/* Link styling */
+a, a:hover, a:focus {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Button styling */
+button.btn, .btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+/* Custom color for Copy button */
+button.btn-copy {
+    background-color: #6c757d;
+    color: #fff; /* White text */
+}
+

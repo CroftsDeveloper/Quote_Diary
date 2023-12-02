@@ -9,13 +9,15 @@
     <meta name="description" content="A personal space to store and reflect on inspiring quotes.">
     <meta name="keywords" content="quotes, diary, reflection, personal, inspiration">
 
+    <!-- Title Block -->
     <title>{% block title %}Quote Diary{% endblock %}</title>
 
-    <!-- Preload custom CSS -->
+     <!-- Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Preload custom CSS -->
     <link rel="preload" href="{{ url_for('static', filename='style.css') }}" as="style">
     
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
@@ -25,7 +27,6 @@
 </head>
 <body data-username="{{ username|default('User') }}">
     <!-- Header Section with Conditional Navigation -->
-    <!-- Planning to enhance this with more options as the project progresses -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Quote Diary</a>
@@ -35,12 +36,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}
-                        <!-- Navigation for authenticated users -->
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
-                        <!-- Navigation for guests -->
-                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Signup</a></li>
                     {% endif %}
@@ -49,10 +47,15 @@
         </div>
     </nav>
 
-    <!-- Flash Messages -->
+    <!-- Main Content Block -->
+    {% block content %}
+    <!-- This block will be overridden by child templates -->
+    {% endblock %}
+
+    <!-- Flash Messages moved to the bottom of the content block to avoid clashes -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        <div class="container mt-4">
+        <div id="flash-container" class="container mt-4">
             {% for category, message in messages %}
                 <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
             {% endfor %}
@@ -60,18 +63,9 @@
     {% endif %}
     {% endwith %}
 
-    <!-- Content Section (This section will be extended by other templates) -->
-    <div class="container mt-3">
-        {% block content %}{% endblock %}
-    </div>
-
-    <!-- Footer Section-->
-    <footer>
-        <!-- footer content to be considered later -->
-    </footer>
-
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Custom Script -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 
 # Import the extensions (db and migrate)
@@ -29,11 +30,11 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return db.session.get(User, int(user_id))
+    return User.query.get(int(user_id))
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', current_year=datetime.now().year)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -44,7 +45,7 @@ def signup():
         existing_user = User.query.filter_by(username=form.username.data).first()
         if existing_user:
             flash('Username already exists. Please choose a different one.', 'danger')
-            return render_template('signup.html', title='Sign Up', form=form)
+            return render_template('signup.html', title='Sign Up', form=form, current_year=datetime.now().year)
         
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, password=hashed_password)
@@ -52,7 +53,7 @@ def signup():
         db.session.commit()
         flash('Your account has been created! You can now log in.', 'success')
         return redirect(url_for('login'))
-    return render_template('signup.html', title='Sign Up', form=form)
+    return render_template('signup.html', title='Sign Up', form=form, current_year=datetime.now().year)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -67,7 +68,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('dashboard'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, current_year=datetime.now().year)
 
 @app.route('/logout')
 @login_required
@@ -87,9 +88,7 @@ def dashboard():
         return redirect(url_for('dashboard'))
     
     user_quotes = Quote.query.filter_by(author_id=current_user.id).all()
-
-    # Pass the username to the template
-    return render_template('dashboard.html', username=current_user.username, quotes=user_quotes, form=form)
+    return render_template('dashboard.html', username=current_user.username, quotes=user_quotes, form=form, current_year=datetime.now().year)
 
 @app.route('/edit_quote/<int:quote_id>', methods=['GET', 'POST'])
 @login_required
@@ -105,7 +104,7 @@ def edit_quote(quote_id):
     elif request.method == 'GET':
         form.content.data = quote.content
         form.author.data = quote.author_name
-    return render_template('edit_quote_form.html', form=form, quote=quote)
+    return render_template('edit_quote_form.html', form=form, quote=quote, current_year=datetime.now().year)
 
 @app.route('/delete_quote/<int:quote_id>', methods=['POST'])
 @login_required
