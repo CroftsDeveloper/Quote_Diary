@@ -20,7 +20,7 @@
                     {{ form.hidden_tag() }}
                     <div class="form-group mb-3">
                         {{ form.content.label(class="form-label") }}
-                        <textarea class="form-control" id="quoteContent" maxlength="500" required aria-labelledby="quoteContentLabel" name="content"></textarea>
+                        <textarea class="form-control" id="quoteContent" maxlength="500" required="" aria-labelledby="quoteContentLabel"></textarea>
                         <!-- Updated Character count for quote content -->
                         <small id="contentCharCount" class="form-text white-text"></small>
                         {% if form.content.errors %}
