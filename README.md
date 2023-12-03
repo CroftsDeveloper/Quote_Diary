@@ -113,43 +113,43 @@ Quote Diary is my web application that has been created for users to record and 
 
 #### base.html Validation
 - **Process**: Validated using an online HTML validator.
-- Screenshot: ![base.html Validation Screenshot](https://ibb.co/ScHhhRS)
+- Screenshot: ![base.html Validation Screenshot](https://i.imgur.com/ACqiUCN.png)
 
 #### dashboard.html Validation
 - **Process**: Validated using an online HTML validator.
-- Screenshot: ![dashboard.html Validation Screenshot](https://ibb.co/nmMxDmr)
+- Screenshot: ![dashboard.html Validation Screenshot](https://i.imgur.com/QKgwxt4.png)
 
 #### edit_quote_form.html Validation
 - **Process**: Validated using an online HTML validator.
-- Screenshot: ![edit_quote_form.html Validation Screenshot](https://ibb.co/2d3qcKJ)
+- Screenshot: ![edit_quote_form.html Validation Screenshot](https://i.imgur.com/oQMAEyQ.png)
 
 #### index.html Validation
 - **Process**: Validated using an online HTML validator.
-- Screenshot: ![index.html Validation Screenshot](https://ibb.co/QbNj1tq)
+- Screenshot: ![index.html Validation Screenshot](https://i.imgur.com/oQMAEyQ.png)
 
 #### login.html Validation
 - **Process**: Validated using an online HTML validator.
-- Screenshot: ![login.html Validation Screenshot](https://ibb.co/58hx3nz)
+- Screenshot: ![login.html Validation Screenshot](https://i.imgur.com/AAFcegX.png)
 
 #### signup.html Validation
 - **Process**: Validated using an online HTML validator.
-- Screenshot: ![signup.html Validation Screenshot](https://ibb.co/6ZMxwwy)
+- Screenshot: ![signup.html Validation Screenshot](https://i.imgur.com/Rk4vAQI.png)
 
 #### CSS Validation
-- **Process**: Employed the W3C CSS Validation Service. No errors presented. ![CSS Validation Screenshot](https://ibb.co/V2GyLZL)
+- **Process**: Employed the W3C CSS Validation Service. No errors presented. ![CSS Validation Screenshot](https://i.imgur.com/HNgPliz.png)
 
 ### Accessibility Testing
 
 - **Process**: Conducted automated scans with Axe.
-- Screenshot: ![Ax tool screenshot ](https://ibb.co/G09pwj0)
+- Screenshot: ![Ax tool screenshot ](https://i.imgur.com/cWMDlQY.png)
 
 ### Performance Testing
 
 - **Process**: Google's Lighthouse was used to conduct tests, initially scoring around 60 for mobile.
-- Screenshot: ![Lighthouse Screenshot - Desktop / Index ](https://ibb.co/ZJWDxRn)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Login](https://ibb.co/4Kz6Fx6)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Signup](https://ibb.co/WF1HF9z)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Dashboard](https://ibb.co/jz1ySXF)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Index ](https://i.imgur.com/TuOcEh8.png)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Login](https://i.imgur.com/2pRTyEI.png)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Signup](https://i.imgur.com/N0Rngld.png)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Dashboard](https://i.imgur.com/tTuxm2o.png)
 
 ### Responsiveness / Device Testing
 
