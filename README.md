@@ -87,8 +87,8 @@ Quote Diary is my web application that has been created for users to record and 
 ### Performance Testing
 
 - **Process**: Google's Lighthouse was used to conduct tests, initially scoring around 60 for mobile.
-- Screenshot: ![Lighthouse Screenshot - Desktop / Index ](https://ibb.co/6ZMxwwy)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Login](https://ibb.co/6ZMxwwy)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Signup](https://ibb.co/6ZMxwwy)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Dashboard](https://ibb.co/6ZMxwwy)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Index ](https://ibb.co/ZJWDxRn)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Login](https://ibb.co/4Kz6Fx6)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Signup](https://ibb.co/WF1HF9z)
+- Screenshot: ![Lighthouse Screenshot - Desktop / Dashboard](https://ibb.co/jz1ySXF)
 

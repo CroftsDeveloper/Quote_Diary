@@ -20,7 +20,7 @@
                     {{ form.hidden_tag() }}
                     <div class="form-group mb-3">
                         {{ form.content.label(class="form-label") }}
-                        {{ form.content(class="form-control", id="quoteContent") }}
+                        <textarea class="form-control" id="quoteContent" maxlength="500" required aria-labelledby="quoteContentLabel" name="content"></textarea>
                         <!-- Updated Character count for quote content -->
                         <small id="contentCharCount" class="form-text white-text"></small>
                         {% if form.content.errors %}
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group mb-3">
                         {{ form.author.label(class="form-label") }}
-                        {{ form.author(class="form-control", id="authorInput") }}
+                        <input type="text" class="form-control" id="authorInput" aria-labelledby="authorInputLabel" name="author">
                         <!-- Updated Character count for author -->
                         <small id="authorCharCount" class="form-text white-text"></small>
                         {% if form.author.errors %}
