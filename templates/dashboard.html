@@ -20,9 +20,7 @@
                     {{ form.hidden_tag() }}
                     <div class="form-group mb-3">
                         {{ form.content.label(class="form-label") }}
-                        <textarea class="form-control" id="quoteContent" maxlength="500" required="" aria-labelledby="quoteContentLabel"></textarea>
-                        <!-- Updated Character count for quote content -->
-                        <small id="contentCharCount" class="form-text white-text"></small>
+                        {{ form.content(class="form-control", id="quoteContent", maxlength="500") }}
                         {% if form.content.errors %}
                             <div class="alert alert-danger" role="alert">
                                 {% for error in form.content.errors %}{{ error }}{% endfor %}
@@ -31,9 +29,7 @@
                     </div>
                     <div class="form-group mb-3">
                         {{ form.author.label(class="form-label") }}
-                        <input type="text" class="form-control" id="authorInput" aria-labelledby="authorInputLabel" name="author">
-                        <!-- Updated Character count for author -->
-                        <small id="authorCharCount" class="form-text white-text"></small>
+                        {{ form.author(class="form-control", id="authorInput") }}
                         {% if form.author.errors %}
                             <div class="alert alert-danger" role="alert">
                                 {% for error in form.author.errors %}{{ error }}{% endfor %}
@@ -41,7 +37,7 @@
                         {% endif %}
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success btn-block">Add Quote</button>
+                        {{ form.submit(class="btn btn-success btn-block") }}
                     </div>
                 </form>
             </div>
