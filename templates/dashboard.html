@@ -37,7 +37,7 @@
                         {% endif %}
                     </div>
                     <div class="text-center">
-                        {{ form.submit(class="btn btn-success btn-block") }}
+                        {{ form.submit(class="btn btn-success btn-block btn-lg") }}
                     </div>
                 </form>
             </div>
@@ -70,9 +70,9 @@
                     </div>
                     <div class="card-footer text-center">
                         <div class="d-flex justify-content-center">
-                            <a href="{{ url_for('edit_quote', quote_id=quote.id) }}" class="btn btn-secondary btn-sm mx-1 btn-block">Edit</a>
-                            <button onclick="confirmDelete('{{ quote.id }}')" class="btn btn-danger btn-sm mx-1 btn-block" aria-label="Delete Quote">Delete</button>
-                            <button class="btn btn-outline-secondary btn-sm mx-1 btn-copy" onclick="copyToClipboard(this)" aria-label="Copy Quote">Copy</button>
+                            <a href="{{ url_for('edit_quote', quote_id=quote.id) }}" class="btn btn-secondary btn-lg mx-1 btn-block">Edit</a>
+                            <button onclick="confirmDelete('{{ quote.id }}')" class="btn btn-danger btn-lg mx-1 btn-block" aria-label="Delete Quote">Delete</button>
+                            <button class="btn btn-outline-secondary btn-lg mx-1 btn-copy" onclick="copyToClipboard(this)" aria-label="Copy Quote">Copy</button> 
                         </div>
                     </div>
                 </div>

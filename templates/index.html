@@ -18,8 +18,8 @@
         {% if current_user.is_authenticated %}
             <!-- Dashboard and Logout options for authenticated users -->
             <section class="text-center my-4" aria-label="User Options Section">
-                <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Dashboard</a>
-                <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg">Logout</a>
             </section>
         {% else %}
             <!-- Call to action for guests -->
