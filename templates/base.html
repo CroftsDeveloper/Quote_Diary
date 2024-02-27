@@ -38,8 +38,12 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Signup</a></li>
+                        {% if request.path != url_for('login') %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                        {% endif %}
+                        {% if request.path != url_for('signup') %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Signup</a></li>
+                        {% endif %}
                     {% endif %}
                 </ul>
             </div>

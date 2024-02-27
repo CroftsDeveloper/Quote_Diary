@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from dotenv import load_dotenv
 import os
-import re
+
 
 # Import the extensions (db and migrate)
 from extensions import db, migrate
