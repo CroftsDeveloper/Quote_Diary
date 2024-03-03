@@ -5,47 +5,47 @@
     <!-- Sign Up Form Heading -->
     <h1 class="mb-4 text-center">Sign Up</h1>
 
-    <!-- Enhanced Sign Up Form with client-side validation -->
+    <!-- Sign Up Form with client-side validation -->
     <form method="post" action="{{ url_for('signup') }}" class="w-50 mx-auto needs-validation" aria-label="Sign Up Form" novalidate>
         {{ form.hidden_tag() }}
 
-        <!-- Username Input Field with client-side validation setup -->
+        <!-- Username Input Field with client-side validation -->
         <div class="mb-3">
             {{ form.username.label(class="form-label", for="usernameInput") }}
-            {{ form.username(id="usernameInput", class="form-control", placeholder="Choose a username", autocomplete="username") }}
+            {{ form.username(id="usernameInput", class="form-control", placeholder="Choose a username", autocomplete="username") }} <!-- Username input field -->
             <!-- Bootstrap styled error message for username -->
             {% if form.username.errors %}
-                <div class="alert alert-danger mt-2" role="alert">{{ form.username.errors[0] }}</div>
+                <div class="alert alert-danger mt-2" role="alert">{{ form.username.errors[0] }}</div> <!-- Displays error message for username -->
             {% endif %}
         </div>
 
         <!-- Password Input Field with client-side validation setup -->
         <div class="mb-3">
             {{ form.password.label(class="form-label", for="passwordInput") }}
-            {{ form.password(id="passwordInput", class="form-control", placeholder="Choose a password") }}
+            {{ form.password(id="passwordInput", class="form-control", placeholder="Choose a password") }} <!-- Password input field -->
             <!-- Bootstrap styled error message for password -->
             {% if form.password.errors %}
-                <div class="alert alert-danger mt-2" role="alert">{{ form.password.errors[0] }}</div>
+                <div class="alert alert-danger mt-2" role="alert">{{ form.password.errors[0] }}</div> <!-- Displays error message for password -->
             {% endif %}
         </div>
 
         <!-- Password Confirmation Input Field with client-side validation setup -->
         <div class="mb-3">
             {{ form.confirm_password.label(class="form-label", for="confirmPasswordInput") }}
-            {{ form.confirm_password(id="confirmPasswordInput", class="form-control", placeholder="Confirm your password") }}
+            {{ form.confirm_password(id="confirmPasswordInput", class="form-control", placeholder="Confirm your password") }} <!-- Confirm password input field -->
             <!-- Bootstrap styled error message for confirm password -->
             {% if form.confirm_password.errors %}
-                <div class="alert alert-danger mt-2" role="alert">{{ form.confirm_password.errors[0] }}</div>
+                <div class="alert alert-danger mt-2" role="alert">{{ form.confirm_password.errors[0] }}</div> <!-- Displays error message for confirm password -->
             {% endif %}
         </div>
 
         <!-- Sign Up Button -->
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary" aria-label="Sign Up">Sign Up</button>
+            <button type="submit" class="btn btn-primary" aria-label="Sign Up">Sign Up</button> <!-- Sign-up button -->
         </div>
     </form>
 
     <!-- Sign Up Signpost -->
-    <p class="mt-4 text-center">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    <p class="mt-4 text-center">Already have an account? <a href="{{ url_for('login') }}">Login</a></p> <!-- Link to the login page for existing users -->
 </main>
 {% endblock %}

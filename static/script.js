@@ -134,7 +134,7 @@ function updateCharacterCount(inputField, charCountDisplay) {
 // Helper function to setup character count for specific fields
 function setupCharacterCountField(inputFieldId, charCountDisplayId) {
     const inputField = document.getElementById(inputFieldId);
-    const charCountDisplay = document.getElementById(charCountDisplayId);
+    const charCountDisplay = document.getElementById(charCountDisplayId) || document.createElement('small');
 
     // Call updateCharacterCount initially to show the count on page load
     updateCharacterCount(inputField, charCountDisplay);

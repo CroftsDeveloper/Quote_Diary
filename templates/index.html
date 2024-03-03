@@ -3,14 +3,14 @@
 {% block content %}
     <!-- Header with a welcoming message -->
     <header class="container mt-2 mb-2 text-center" role="banner">
-        <h1>Quote Diary</h1>
+        <h1>Quote Diary</h1> <!-- Displays the title of the website -->
     </header>
 
     <!-- Introduction Container -->
     <div class="introduction-container container text-center mt-2">
-        <h2 class="intro-title">Discover the Benefits</h2>
+        <h2 class="intro-title">Discover the Benefits</h2> <!-- Title for the introduction section -->
         <p class="intro-text">Welcome to your Quote Diary! A personal vault for collecting the quotes that matter to you. 
-            Sign up and begin to store the inspiration from your daily life!</p>
+            Sign up and begin to store the inspiration from your daily life!</p> <!-- Description of the Quote Diary -->
     </div>
 
     <!-- Main content based on user authentication -->
@@ -18,16 +18,16 @@
         {% if current_user.is_authenticated %}
             <!-- Dashboard and Logout options for authenticated users -->
             <section class="text-center my-4" aria-label="User Options Section">
-                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Dashboard</a>
-                <a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg">Logout</a>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Dashboard</a> <!-- Link to the dashboard -->
+                <a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg">Logout</a> <!-- Logout button -->
             </section>
         {% else %}
             <!-- Call to action for guests -->
             <section class="text-center my-4" aria-label="Signup and Login Options Section">
-                <h2>New to Quote Diary?</h2>
-                <a href="{{ url_for('signup') }}" class="btn btn-primary my-2">Sign Up</a>
-                <h2 class="mt-3">Already have an account?</h2>
-                <a href="{{ url_for('login') }}" class="btn btn-success my-2">Login</a>
+                <h2>New to Quote Diary?</h2> <!-- Title for new users -->
+                <a href="{{ url_for('signup') }}" class="btn btn-primary my-2">Sign Up</a> <!-- Link to the sign-up page -->
+                <h2 class="mt-3">Already have an account?</h2> <!-- Title for existing users -->
+                <a href="{{ url_for('login') }}" class="btn btn-success my-2">Login</a> <!-- Link to the login page -->
             </section>  
         {% endif %}
     </main>

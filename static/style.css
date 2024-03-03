@@ -47,21 +47,11 @@ body.loaded {
     .container {
         padding: 15px;
     }
-    /* Adjust button padding and font size in card footer */
-    .card-footer .btn {
-        padding: 4px 8px;
-        font-size: 0.8rem;
-    }
 }
 
 @media screen and (max-width: 480px) {
     .container {
         padding: 10px;
-    }
-    /* Further adjustments for smaller screens */
-    .card-footer .btn {
-        padding: 2px 6px;
-        font-size: 0.75rem;
     }
 }
 
@@ -110,7 +100,6 @@ button.btn-copy {
     background-color: #6c757d;
     color: #fff; 
 }
-
 
 /* CSS to style the introduction container */
 .intro-title {

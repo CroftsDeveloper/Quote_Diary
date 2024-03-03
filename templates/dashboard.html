@@ -22,7 +22,8 @@
                     <div class="form-group mb-3">
                         <label for="quoteContent" class="form-label">Quote Content</label>
                         <input type="text" name="content" class="form-control" id="quoteContent" maxlength="500" aria-describedby="quoteContentError">
-                        <small id="contentCharCount" class="form-text text-muted text-white">Character Count: 0/500</small>
+                        <!-- Override text color for character count -->
+                        <small id="contentCharCount" class="form-text text-muted" style="color: white;">Character Count: 0/500</small>
                         <!-- Displays errors for quote content -->
                         {% if form.content.errors %}
                             <div id="quoteContentError" class="alert alert-danger" role="alert">
@@ -34,7 +35,8 @@
                     <div class="form-group mb-3">
                         <label for="authorInput" class="form-label">Author</label>
                         <input type="text" name="author" class="form-control" id="authorInput" aria-describedby="authorInputError">
-                        <small id="authorCharCount" class="form-text text-muted text-white">Character Count: 0/100</small>
+                        <!-- Override text color for character count -->
+                        <small id="authorCharCount" class="form-text text-muted" style="color: white;">Character Count: 0/100</small>
                         <!-- Displays errors for author input -->
                         {% if form.author.errors %}
                             <div id="authorInputError" class="alert alert-danger" role="alert">

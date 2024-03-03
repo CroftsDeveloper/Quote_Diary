@@ -28,23 +28,25 @@
     <!-- Header Section with Conditional Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Quote Diary</a>
+            <a class="navbar-brand" href="/">Quote Diary</a> <!-- Brand logo and link to home page -->
+            <!-- Toggle button for collapsing navigation menu -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Navigation links -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}
                         {% if request.path != url_for('dashboard') %}
-                            <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li> <!-- Link to dashboard if user is logged in -->
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li> <!-- Logout link for authenticated users -->
                     {% else %}
                         {% if request.path != url_for('login') %}
-                            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li> <!-- Login link for anonymous users -->
                         {% endif %}
                         {% if request.path != url_for('signup') %}
-                            <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Signup</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Signup</a></li> <!-- Signup link for anonymous users -->
                         {% endif %}
                     {% endif %}
                 </ul>
@@ -54,15 +56,13 @@
 
     <!-- Main Content Block -->
     {% block content %}
-    <!-- This block will be overridden by child templates -->
     {% endblock %}
 
-    <!-- Flash Messages moved to the bottom of the content block to avoid clashes -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <div id="flash-container" class="container mt-4">
             {% for category, message in messages %}
-                <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+                <div class="alert alert-{{ category }}" role="alert">{{ message }}</div> <!-- Display flash messages -->
             {% endfor %}
         </div>
     {% endif %}
@@ -74,6 +74,5 @@
     <!-- Custom Script -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.3.1/axe.min.js"></script>
-
 </body>
 </html>

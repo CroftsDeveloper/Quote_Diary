@@ -2,21 +2,21 @@
 
 {% block content %}
     <main class="container mt-5" role="main">
-        <!-- Maintaining enhanced form heading -->
-        <h1 class="mb-4 text-center">Login</h1>
-        
-        <!-- Updated form layout with Bootstrap classes and added client-side validation -->
+        <!-- Form heading -->
+        <h1 class="mb-4 text-center">Login</h1> <!-- Displays the login form heading -->
+
+        <!-- Form layout with Bootstrap classes and client-side validation -->
         <form method="post" class="w-50 mx-auto needs-validation" aria-label="Login Form" id="loginForm" novalidate>
             {{ form.hidden_tag() }}
 
             <!-- Styling the username input field with Bootstrap -->
             <div class="mb-3">
                 {{ form.username.label(class="form-label", for="usernameInput") }}
-                {{ form.username(id="usernameInput", class="form-control", placeholder="Enter your username") }}
+                {{ form.username(id="usernameInput", class="form-control", placeholder="Enter your username") }} <!-- Username input field -->
                 <!-- Bootstrap styled error message for username -->
                 {% if form.username.errors %}
                     <div class="alert alert-danger mt-2" role="alert">
-                        {{ form.username.errors[0] }}
+                        {{ form.username.errors[0] }} <!-- Displays error message for username -->
                     </div>
                 {% endif %}
             </div>
@@ -24,23 +24,23 @@
             <!-- Styling the password input field with Bootstrap -->
             <div class="mb-3">
                 {{ form.password.label(class="form-label", for="passwordInput") }}
-                {{ form.password(id="passwordInput", class="form-control", placeholder="Enter your password") }}
+                {{ form.password(id="passwordInput", class="form-control", placeholder="Enter your password") }} <!-- Password input field -->
                 <!-- Bootstrap styled error message for password -->
                 {% if form.password.errors %}
                     <div class="alert alert-danger mt-2" role="alert">
-                        {{ form.password.errors[0] }}
+                        {{ form.password.errors[0] }} <!-- Displays error message for password -->
                     </div>
                 {% endif %}
             </div>
 
             <!-- Bootstrap styling for submit button -->
             <div class="d-grid gap-2">
-                {{ form.submit(class="btn btn-primary") }}
+                {{ form.submit(class="btn btn-primary") }} <!-- Submit button -->
             </div>
 
             <!-- Signpost to Signup for users without an account -->
             <div class="text-center mt-4">
-                <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+                <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p> <!-- Link to the signup page for new users -->
             </div>
         </form>
     </main>
