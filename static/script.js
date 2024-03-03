@@ -1,9 +1,9 @@
-// Function for page load changes
+// Function for managing page load behavior
 document.addEventListener('DOMContentLoaded', () => {
-    // Set initial opacity to 0
+    // Set initial opacity to 0 to enable smooth transition
     document.body.style.opacity = 0;
 
-    // After loading, gradually transition to full opacity
+    // Gradually transition to full opacity after page load
     window.onload = () => {
         setTimeout(() => {
             document.body.style.transition = 'opacity 0.5s ease-in-out';
@@ -11,23 +11,80 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     };
 
-    // Initialize the dynamic greeting based on time of day
+    // Initialise dynamic greeting based on time of day
     updateDateAndGreeting();
 
-    // Initialize other features after DOM content is loaded
-    setupAuthorSearch();
-    setupCharacterCount('quoteContent', 'contentCharCount');
-    setupCharacterCount('authorInput', 'authorCharCount');
-    
-    // Set up event listeners for copy to clipboard buttons
+    // Initialise features after DOM content is loaded
+    initializeFeatures();
+});
+
+// Function to handle confirmation of quote deletion
+function confirmDelete(quoteId) {
+    // Confirm deletion with user
+    if (confirm("Are you sure you want to delete this quote?")) {
+        // Send request to delete quote
+        fetch(`/delete_quote/${quoteId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 'quoteId': quoteId })
+        }).then(response => {
+            // Reload page if deletion successful
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert("An error occurred while trying to delete the quote.");
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+}
+
+// Set up author search functionality
+function setupAuthorSearch() {
+    const authorSearchElement = document.getElementById('authorSearch');
+    if (authorSearchElement) {
+        authorSearchElement.addEventListener('input', filterQuotesByAuthor);
+    }
+}
+
+// Function to filter quotes based on author name
+function filterQuotesByAuthor() {
+    const searchValue = document.getElementById('authorSearch').value.toLowerCase();
+    const quotes = document.querySelectorAll('.card');
+    quotes.forEach(quote => {
+        const author = quote.querySelector('.blockquote-footer').innerText.toLowerCase();
+        quote.style.display = author.includes(searchValue) ? '' : 'none';
+    });
+}
+
+// Set up copy to clipboard functionality
+function setupCopyToClipboard() {
     const copyButtons = document.querySelectorAll('.copy-to-clipboard');
     copyButtons.forEach(button => {
         button.addEventListener('click', function() {
             copyToClipboard(this);
         });
     });
+}
 
-    // Set up event listener for form submissions
+// Function to copy quote text and author to clipboard
+function copyToClipboard(buttonElement) {
+    const quoteCard = buttonElement.closest('.card');
+    const quoteText = quoteCard.querySelector('.card-body blockquote p').innerText;
+    const authorText = quoteCard.querySelector('.blockquote-footer').innerText;
+    const fullText = `"${quoteText}" — ${authorText}`;
+    
+    navigator.clipboard.writeText(fullText).then(() => {
+        buttonElement.textContent = 'Copied!';
+        setTimeout(() => buttonElement.textContent = 'Copy', 2000);
+    }).catch(err => console.error('Failed to copy: ', err));
+}
+
+// Set up form submission event listeners
+function setupFormSubmissions() {
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     
@@ -46,108 +103,47 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
+}
 
-// Function to confirm quote deletion
-function confirmDelete(quoteId) {
-    // Confirm dialog
-    if (confirm("Are you sure you want to delete this quote?")) {
-        // Send a POST request to the server to delete the quote
-        fetch(`/delete_quote/${quoteId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 'quoteId': quoteId })
-        }).then(response => {
-            // Check if the deletion was successful
-            if (response.ok) {
-                // Remove the quote from the display or reload the page
-                window.location.reload();
-            } else {
-                alert("An error occurred while trying to delete the quote.");
-            }
-        }).catch(error => {
-            console.error('Error:', error);
-        });
+// Set up character count functionality for input fields
+function setupCharacterCount() {
+    setupCharacterCountField('quoteContent', 'contentCharCount');
+    setupCharacterCountField('authorInput', 'authorCharCount');
+}
+
+// Function to initialise various features
+function initializeFeatures() {
+    setupAuthorSearch();
+    setupCharacterCount();
+    setupCopyToClipboard();
+    setupFormSubmissions();
+}
+
+// Function to update character count display for input fields
+function updateCharacterCount(inputField, charCountDisplay) {
+    const maxLength = inputField.getAttribute('maxlength'); // Get the max length of the input field
+    const currentLength = inputField.value.length;
+    const charactersLeft = maxLength - currentLength; // Calculate remaining characters
+
+    if (charCountDisplay) {
+        // Update the text content to show current count and characters left
+        charCountDisplay.textContent = `Character Count: ${currentLength}/${maxLength} (Left: ${charactersLeft})`;
     }
 }
 
-// Set up the event listener for author search input
-function setupAuthorSearch() {
-    const authorSearchElement = document.getElementById('authorSearch');
-    if (authorSearchElement) {
-        // Event listener triggers when user types in the search field
-        authorSearchElement.addEventListener('input', filterQuotesByAuthor);
-    }
-}
-
-// Filters quotes based on the author name
-function filterQuotesByAuthor() {
-    // Retrieve current search value and convert to lowercase for case-insensitive comparison
-    const searchValue = document.getElementById('authorSearch').value.toLowerCase();
-    // Select all quote cards
-    const quotes = document.querySelectorAll('.card');
-    quotes.forEach(quote => {
-        // Get the author's name and check if it includes the search value
-        const author = quote.querySelector('.blockquote-footer').innerText.toLowerCase();
-        // Display or hide the quote based on the search match
-        quote.style.display = author.includes(searchValue) ? '' : 'none';
-    });
-}
-
-// Function to copy quote text and author to the clipboard
-function copyToClipboard(buttonElement) {
-    // Find the closest quote card element
-    const quoteCard = buttonElement.closest('.card');
-    
-    // Extract the quote text and author
-    const quoteText = quoteCard.querySelector('.card-body blockquote p').innerText;
-    const authorText = quoteCard.querySelector('.blockquote-footer').innerText;
-    
-    // Combine the quote and author text
-    const fullText = `"${quoteText}" — ${authorText}`;
-    
-    // Use the navigator clipboard API to copy text
-    navigator.clipboard.writeText(fullText).then(() => {
-        // Change the button text temporarily to indicate the copy action
-        buttonElement.textContent = 'Copied!';
-        setTimeout(() => buttonElement.textContent = 'Copy', 2000);
-    }).catch(err => console.error('Failed to copy: ', err));
-}
-
-// Set up character count functionality for given input field
-function setupCharacterCount(inputFieldId, charCountDisplayId) {
-    const inputFieldElement = document.getElementById(inputFieldId);
+// Helper function to setup character count for specific fields
+function setupCharacterCountField(inputFieldId, charCountDisplayId) {
+    const inputField = document.getElementById(inputFieldId);
     const charCountDisplay = document.getElementById(charCountDisplayId);
 
-    if (inputFieldElement && charCountDisplay) {
-        // Update character count immediately in case of pre-filled values
-        updateCharacterCount(inputFieldElement, charCountDisplay);
+    // Call updateCharacterCount initially to show the count on page load
+    updateCharacterCount(inputField, charCountDisplay);
 
-        // Attach event listener to input field
-        inputFieldElement.addEventListener('input', () => {
-            updateCharacterCount(inputFieldElement, charCountDisplay);
-        });
-    }
+    // Add input event listener to the field to update character count dynamically
+    inputField.addEventListener('input', () => updateCharacterCount(inputField, charCountDisplay));
 }
 
-// Update character count for a specific input field
-function updateCharacterCount(inputField, charCountDisplay) {
-    const maxLength = inputField.getAttribute('maxlength'); // Get the maximum length attribute of the input field
-    if (charCountDisplay) {
-        // Display current length and maximum length
-        charCountDisplay.textContent = inputField.value.length + '/' + maxLength;
-    }
-}
-
-// Update character count for a specific input field
-function updateCharacterCount(inputField, charCountDisplay) {
-    if (charCountDisplay) {
-        charCountDisplay.textContent = 'Character Count: ' + inputField.value.length;
-    }
-}
-
+// Update dynamic date and greeting message
 function updateDateAndGreeting() {
     const dateElement = document.getElementById('dynamicDate');
     if (dateElement) {
@@ -161,13 +157,12 @@ function updateDateAndGreeting() {
     }
 }
 
-// Function to validate login form
+// Function to validate login form inputs
 function validateLoginForm() {
     const username = document.getElementById('usernameInput').value.trim();
     const password = document.getElementById('passwordInput').value.trim();
     let valid = true;
 
-    // Validation logic for username and password
     if (username === '') {
         valid = false;
         displayError('usernameError', 'Username is required.');
@@ -182,7 +177,6 @@ function validateLoginForm() {
         clearError('passwordError');
     }
 
-    // Display login error message if needed
     if (!valid) {
         displayError('loginError', 'Incorrect username or password. Please try again.');
     }
@@ -190,14 +184,13 @@ function validateLoginForm() {
     return valid;
 }
 
-// Function to validate signup form
+// Function to validate signup form inputs
 function validateSignupForm() {
     const username = document.getElementById('usernameInput').value.trim();
     const password = document.getElementById('passwordInput').value.trim();
     const confirmPassword = document.getElementById('confirmPasswordInput').value.trim();
     let valid = true;
 
-    // Validation logic for username, password, and password confirmation
     if (username === '') {
         valid = false;
         displayError('usernameError', 'Username is required.');
@@ -225,7 +218,7 @@ function validateSignupForm() {
     return valid;
 }
 
-// Function to display an error message
+// Function to display error messages
 function displayError(errorId, message) {
     const errorElement = document.getElementById(errorId);
     if (errorElement) {
@@ -233,7 +226,7 @@ function displayError(errorId, message) {
     }
 }
 
-// Function to clear an error message
+// Function to clear error messages
 function clearError(errorId) {
     const errorElement = document.getElementById(errorId);
     if (errorElement) {
