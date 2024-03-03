@@ -134,6 +134,15 @@ function setupCharacterCount(inputFieldId, charCountDisplayId) {
 
 // Update character count for a specific input field
 function updateCharacterCount(inputField, charCountDisplay) {
+    const maxLength = inputField.getAttribute('maxlength'); // Get the maximum length attribute of the input field
+    if (charCountDisplay) {
+        // Display current length and maximum length
+        charCountDisplay.textContent = inputField.value.length + '/' + maxLength;
+    }
+}
+
+// Update character count for a specific input field
+function updateCharacterCount(inputField, charCountDisplay) {
     if (charCountDisplay) {
         charCountDisplay.textContent = 'Character Count: ' + inputField.value.length;
     }

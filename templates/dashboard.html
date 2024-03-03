@@ -2,40 +2,47 @@
 
 {% block content %}
 <main class="container mt-5" role="main">
-    <!-- Dynamic greeting and welcome message for the user -->
+    <!-- Greets user based on current time -->
     <div class="row mb-4">
         <div class="col-12 welcome-section">
             <div class="text-center">
-                <p id="dynamicDate" class="lead"></p> <!-- Placeholder for dynamic greeting and date -->
+                <p id="dynamicDate" class="lead"></p> <!-- Sets dynamic greeting and date -->
             </div>
         </div>
     </div>
 
-    <!-- Section for adding new quotes -->
+    <!-- Form section for quote submission -->
     <section aria-labelledby="addQuoteHeading">
         <div class="row mb-4">
             <div class="col-12">
                 <h2 id="addQuoteHeading" class="h3 text-center mb-3">Add a New Quote</h2>
                 <form method="POST" action="{{ url_for('dashboard') }}" aria-label="Add New Quote">
                     {{ form.hidden_tag() }}
+                    <!-- Input for quote content (tracks character count) -->
                     <div class="form-group mb-3">
                         <label for="quoteContent" class="form-label">Quote Content</label>
                         <input type="text" name="content" class="form-control" id="quoteContent" maxlength="500" aria-describedby="quoteContentError">
+                        <small id="contentCharCount" class="form-text text-muted">Character Count: 0/500</small>
+                        <!-- Displays errors for quote content -->
                         {% if form.content.errors %}
                             <div id="quoteContentError" class="alert alert-danger" role="alert">
                                 {% for error in form.content.errors %}{{ error }}{% endfor %}
                             </div>
                         {% endif %}
                     </div>
+                    <!-- Input for author's name (also tracks character count) -->
                     <div class="form-group mb-3">
                         <label for="authorInput" class="form-label">Author</label>
                         <input type="text" name="author" class="form-control" id="authorInput" aria-describedby="authorInputError">
+                        <small id="authorCharCount" class="form-text text-muted">Character Count: 0/100</small>
+                        <!-- Displays errors for author input -->
                         {% if form.author.errors %}
                             <div id="authorInputError" class="alert alert-danger" role="alert">
                                 {% for error in form.author.errors %}{{ error }}{% endfor %}
                             </div>
                         {% endif %}
                     </div>
+                    <!-- Submit button for the form -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-success btn-block btn-lg">Submit</button>
                     </div>
@@ -44,7 +51,7 @@
         </div>
     </section>
 
-    <!-- Author search field -->
+    <!-- Search field for filtering quotes by author -->
     <section aria-labelledby="authorSearchHeading">
         <h2 id="authorSearchHeading" class="visually-hidden">Search by Author</h2>
         <div class="row mb-4">
@@ -54,7 +61,7 @@
         </div>
     </section>
 
-    <!-- Displaying user's quotes in a responsive grid layout -->
+    <!-- Display section for user's quotes -->
     <section aria-labelledby="userQuotesHeading">
         <h2 id="userQuotesHeading" class="h3 text-center mb-4">Your Quotes</h2>
         <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -68,6 +75,7 @@
                             <footer class="blockquote-footer mt-2">{{ quote.author_name or 'Unknown' }}</footer>
                         </blockquote>
                     </div>
+                    <!-- Edit, delete, and copy quote options -->
                     <div class="card-footer text-center">
                         <div class="d-flex justify-content-center">
                             <a href="{{ url_for('edit_quote', quote_id=quote.id) }}" class="btn btn-secondary btn-lg mx-1 btn-block">Edit</a>
@@ -79,6 +87,7 @@
             </div>
             {% endfor %}
             {% else %}
+            <!-- Message for no quotes available -->
             <p class="text-center">You have no quotes yet. Start adding some!</p>
             {% endif %}
         </div>

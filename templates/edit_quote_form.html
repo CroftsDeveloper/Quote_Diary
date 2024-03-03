@@ -4,38 +4,39 @@
 <main class="container mt-4" role="main">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <!-- Enhanced header for the form -->
+            <!-- Page title: Edit quote -->
             <h1 class="mb-3 text-center">Edit Quote</h1>
-            <!-- Updated form layout for editing a quote -->
+            <!-- Form setup for quote editing -->
             <form method="POST" action="{{ url_for('edit_quote', quote_id=quote.id) }}" aria-label="Edit Quote Form">
                 {{ form.hidden_tag() }}
-                <!-- Bootstrap styling for quote content input field -->
+                <!-- Input for quote content with dynamic character count -->
                 <div class="form-group mb-3">
                     {{ form.content.label(class="form-label", for="quoteContent") }}
                     {{ form.content(id="quoteContent", class="form-control") }}
-                    <!-- Bootstrap alert for displaying content field errors -->
+                    <small id="contentCharCount" class="form-text text-muted">Character Count: 0/500</small>
+                    <!-- Error handling for content input -->
                     {% if form.content.errors %}
                     <div class="alert alert-danger" role="alert">
                         {% for error in form.content.errors %}{{ error }}{% endfor %}
                     </div>
                     {% endif %}
                 </div>
-                <!-- Bootstrap styling for quote author input field -->
+                <!-- Input for author name with character count -->
                 <div class="form-group mb-3">
                     {{ form.author.label(class="form-label", for="quoteAuthor") }}
                     {{ form.author(id="quoteAuthor", class="form-control") }}
-                    <!-- Bootstrap alert for displaying author field errors -->
+                    <small id="authorCharCount" class="form-text text-muted">Character Count: 0/100</small>
+                    <!-- Error handling for author input -->
                     {% if form.author.errors %}
                     <div class="alert alert-danger" role="alert">
                         {% for error in form.author.errors %}{{ error }}{% endfor %}
                     </div>
                     {% endif %}
                 </div>
-                <!-- Submit and cancel buttons with Bootstrap styling -->
+                <!-- Action buttons: submit and cancel -->
                 <div class="d-flex justify-content-between">
                     {{ form.submit(class="btn btn-primary", aria_label="Update Quote") }}
-                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary"
-                        aria-label="Cancel and return to Dashboard">Cancel</a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary" aria-label="Cancel and return to Dashboard">Cancel</a>
                 </div>
             </form>
         </div>
