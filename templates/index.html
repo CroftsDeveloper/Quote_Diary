@@ -2,7 +2,7 @@
 
 {% block content %}
     <!-- Header with a welcoming message -->
-    <header class="container mt-2 mb-2 text-center" role="banner">
+    <header class="container mt-2 mb-2 text-center">
         <h1>Quote Diary</h1> <!-- Displays the title of the website -->
     </header>
 
@@ -14,7 +14,7 @@
     </div>
 
     <!-- Main content based on user authentication -->
-    <main class="container mt-3" role="main">
+    <main class="container mt-3">
         {% if current_user.is_authenticated %}
             <!-- Dashboard and Logout options for authenticated users -->
             <section class="text-center my-4" aria-label="User Options Section">
