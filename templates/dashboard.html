@@ -21,28 +21,20 @@
                     <!-- Input for quote content (tracks character count) -->
                     <div class="form-group mb-3">
                         <label for="quoteContent" class="form-label">Quote Content</label>
-                        <input type="text" name="content" class="form-control" id="quoteContent" maxlength="500" aria-describedby="quoteContentError">
-                        <!-- Enhanced visibility for character count using Bootstrap -->
+                        <input type="text" name="content" class="form-control" id="quoteContent" maxlength="500" aria-describedby="contentCharCount {% if form.content.errors %}quoteContentError{% endif %}">
                         <small id="contentCharCount" class="form-text text-white bg-dark p-1">Character Count: 0/500</small>
-                        <!-- Displays errors for quote content -->
-                        {% if form.content.errors %}
-                            <div id="quoteContentError" class="alert alert-danger" role="alert">
-                                {% for error in form.content.errors %}{{ error }}{% endfor %}
-                            </div>
-                        {% endif %}
+                        <div id="quoteContentError" class="alert alert-danger {% if not form.content.errors %}hidden{% endif %}" role="alert">
+                            {% for error in form.content.errors %}{{ error }}{% endfor %}
+                        </div>
                     </div>
                     <!-- Input for author's name (also tracks character count) -->
                     <div class="form-group mb-3">
                         <label for="authorInput" class="form-label">Author</label>
-                        <input type="text" name="author" class="form-control" id="authorInput" maxlength="100" aria-describedby="authorInputError">
-                        <!-- Enhanced visibility for character count using Bootstrap -->
+                        <input type="text" name="author" class="form-control" id="authorInput" maxlength="100" aria-describedby="authorCharCount {% if form.author.errors %}authorInputError{% endif %}">
                         <small id="authorCharCount" class="form-text text-white bg-dark p-1">Character Count: 0/100</small>
-                        <!-- Displays errors for author input -->
-                        {% if form.author.errors %}
-                            <div id="authorInputError" class="alert alert-danger" role="alert">
-                                {% for error in form.author.errors %}{{ error }}{% endfor %}
-                            </div>
-                        {% endif %}
+                        <div id="authorInputError" class="alert alert-danger {% if not form.author.errors %}hidden{% endif %}" role="alert">
+                            {% for error in form.author.errors %}{{ error }}{% endfor %}
+                        </div>
                     </div>
                     <!-- Submit button for the form -->
                     <div class="text-center">

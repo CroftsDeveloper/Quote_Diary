@@ -120,3 +120,8 @@ button.btn-copy {
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+/* CSS class to hide elements from the display without removing them from the document  */
+.hidden {
+    display: none;
+}
