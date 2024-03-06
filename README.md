@@ -15,7 +15,7 @@
 
 #### Background
 
-As an avid reader and somebody who is trying to work on self improvement, I often find quotes inspirational and am writing them down in my phone's Note's app. I have tried to find an online service to do this but there always seems to be a barrier in the way, such as lengthy signup process, linking accounts or multiple notifications or emails. I wanted to create something that had a low barrier of entry and a met its basic purpose. I did find a few online services that offer a simular process but they all seem to be extremely outdated, which indicated to me that they were made many years ago and are likely not maintained. This gave me confidence that I could implement a more modern approach.
+As an avid reader who is committed to personal development, quotes have always served as a source of motivation for me. I frequently record them in the Notes app on my phone in case I need them later. I have, however, become frustrated by the absence of an easy-to-use web platform for this use. Current services frequently demand a drawn-out registration procedure, account linkage, or deluge users with emails and notifications. My aim was to develop a system that achieves its main goal and provides a smooth user experience with low entry barriers.
 
 ### Purpose
 
