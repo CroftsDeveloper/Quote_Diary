@@ -1,176 +1,216 @@
 # Quote Diary [MVP]
 
-## Table of Contents
+### Table of Contents
 
 - [Project Overview](#project-overview)
-- [Design, Layout & Structure](#design-layout--structure)
+- [UX](#ux)
+  - [Strategy](#strategy)
+    - [User Stories](#user-stories)
+    - [Design Decisions](#design-decisions)
 - [Technologies Used](#technologies-used)
-- [Features](#features)
-- [Testing](#detailed-testing)
-- [Problems and Resolutions](#problems-and-resolutions)
+  - [Languages](#languages)
+  - [Frameworks & Libraries](#frameworks-libraries)
+  - [Tools & Services](#tools-services)
+  - [Future Features](#future-features)
+- [Testing](#testing)
 - [Deployment](#deployment)
+  - [Performance Checks](#performance-checks)
 - [Credits](#credits)
+- [Contributions](#contributions)
 
-## Project Overview
+# Project Overview
 
-#### Background
+Being an avid reader who is dedicated to self-improvement, quotes have always provided me with inspiration. I usually write them down in my phone's Notes app in case I need them later. But I would prefer if there was a user-friendly web platform available for this. 
 
-As an avid reader who is committed to personal development, quotes have always served as a source of motivation for me. I frequently record them in the Notes app on my phone in case I need them later. I have, however, become frustrated by the absence of an easy-to-use web platform for this use. Current services frequently demand a drawn-out registration procedure, account linkage, or deluge users with emails and notifications. My aim was to develop a system that achieves its main goal and provides a smooth user experience with low entry barriers.
+Existing services frequently need a laborious registration process, require linking accounts, or bombard users with emails and messages. My objective was to create a system that accomplishes its primary objective and offers a quick and seamless user interface with few obstacles to access.
 
-### Purpose
+Here are the deployed links :
 
-Quote Diary is my web application that has been created for users to record and reflecting on inspirational quotes, designed for literature enthusiasts, journal keepers, and anyone that would like to store their daily inspiration of words. It is intended to be a simple web-app to focus on ease of use and minimal distractions.
+**GitHub Repository:** [Link](https://github.com/CroftsDeveloper/Quote_Diary.git)
 
-### Target Audience
+**Heroku Deployment:** [Link](https://quote-diary-d98222c5c65a.herokuapp.com/)
 
-- Literature enthusiasts
-- Reflective journal keepers
-- General public (those interested in storage of quotes and ease of access with search functionality)
+# UX
 
-### User Stories 
+## Strategy
 
-#### User Story 1: User Registration
+Here are the User Stories that I set out to meet and the outcome upon finalised MVP :
 
-    Expected:
-    Literature enthusiasts should be able to easily register for an account with a username and password. The registration process should be straightforward and not require lengthy information. After registration, users should be instantly logged in to their Quote Diary.
+# User Stories
 
-    Testing:
-    Asked family and friends from the target audience to assess the registration process's ease and effectiveness. 
+| User Stories | Fulfillment |
+| ------------ | ----------- |
+| **User Registration**: "As a literature enthusiast, I want to easily register for an account with a username and password, so that I can quickly access and use the Quote Diary." | My project provides a straightforward registration process where users can sign up with a username and password, ensuring easy access to the Quote Diary. This will be improved in future development |
+| **Quote Management**: "As a reflective journal keeper, I want to have immediate access to create, read, update, and delete quotes, so that I can efficiently manage my collection within the Quote Diary." | My project allows users to create, read, update, and delete quotes, providing full CRUD functionality for efficient management of quote collections. This will be improved in future development. |
+| **Navigation and Search Capability**: "As a user of the Quote Diary, I want to be able to navigate back to my quotes easily and search for specific ones, so that I can efficiently find and reference quotes whenever needed." | My project ensures easy navigation for users to access their quotes and includes a search functionality for quick retrieval of specific quotes, enhancing user experience. |
+| **Mobile-Friendly Viewing**: "As a user of the Quote Diary, I want the platform to be optimised for viewing on mobile devices, ensuring that the layout and functionality remain intact and user-friendly on smaller screens." | My project is designed to be responsive, providing an optimal viewing and interaction experience across various devices, including tablets, desktop computers, and mobile devices. This ensures that users can access and use the Quote Diary seamlessly on any device. |
 
-    Result:
-    All reported that the process was simple and worked, however, that would require a forgot password feature for professional deployment
+# Design Decisions
 
-    Fix:
-    No modifications were needed at this stage but would need to implement feature into future development
+In order to ensure optimal viewing and interaction across a variety of devices, including tablets, desktop computers, and mobile devices, the website was created with an easy-to-use but responsive structure.
 
-#### User Story 2: Adding of quotes for Reflective Journal Keepers
+## Wireframes
 
-    Expected:
-    Once registered, users should have immediate access to create, read, update and delete quotes
+Below are the wireframes designed for my key pages, illustrating the planned layout and user flow :
 
-    Testing:
-    Asked family and friends who journal to test the program 
+| Page               | Wireframe Link       |
+|--------------------|----------------------|
+| Index (initial landing page)            | [Wireframe]()            |
+| Login              | [Wireframe]()            |
+| Signup           | [Wireframe]()            |
+| Dashboard  | [Wireframe]()            |
 
-    Result:
-    Testers reported full functionality of CRUD
+## Features and Functionalities
 
-    Fix:
-    No modifications were needed for registration, and it met the expectations
+- **User Registration**: Users can easily register for an account on the Quote Diary platform, providing them with personalised access to create a diary of their favorite quotes
+  
+- **Convenient Login**: Once registered, users can conveniently log in to the platform using their credentials, ensuring seamless access to their personalised quote collection.
 
-#### User Story 3: User Registration for the General Public
+- **Quote Management**: Users have the ability to add their favorite quotes to their list within the platform. This feature allows for easy access and reference to them for inspiration or reflection.
+ 
+- **Efficient Search Functionality**: The platform includes a robust search feature that enables users to quickly find specific quotes by keyword, enhancing user experience and saving time.
 
-    Expected:
-    After registration and quote inputs, users should be able to return to the quotes and search for their favorite ones with minimal hurdles
+- **Secure Logout**: Users can securely log out of the platform at any time, ensuring the privacy and security of their account information and personal data.
 
-    Testing:
-    Asked the same testers as US2 to test the search functionality
+## Scope
 
-    Result:
-    Search functionality worked as expected
+- **Skeleton**: The layout design prioritised simplicity and intuitive navigation, with a responsive design ensuring accessibility across various devices. The platform was designed to be navigable for users with disabilities, adhering to WCAG guidelines for accessibility.
+- **Structure**: I organised the website layout to reduce clutter and make it easier for users to find what they're looking for. 
 
-    Fix:
-    No modifications were needed at this time but noted that could improve it by favoriting options in the next development stage
+I chose a simple dark and clean background. I chose this primarily because I did not want anything to stand out too much and take away from the core concept of the project, which is reflection of the quote itself, rather than the appearance of the project. I relied heavily on Boostrap for this.
 
-## Design, Layout & Structure
+This background may be seen as too dark for the project. This would be something I would consider at another stage of development in the future and I would like to implement different modes, such as dark or light. This will help customise the project to users wishes. **I did not have the time to consider this at this stage of the MVP**
 
-### Colour Scheme
+#### Fonts
 
-- I have gone for a simple dark and clean background. I chose this primarily because I did not want anything to stand out too much and take away from the core concept of the project, which is reflection of the quote itself, rather than the appearance of the project. This background may be seen as too dark for the project. This would be something I would consider at another stage of development in the future and I would like to implement different modes, such as dark or light. This will help customise the project to users wishes. I did not have the time to consider this at this stage. 
+- **"Roboto"** for its clarity and readability, enhancing the ease of reading quotes. I wanted to avoid any 'tacky' font that I had seen on other online services.
+- **"sans-serif"** as a backup font
 
-### Fonts
+## User Structure / Flow
 
-- "Roboto" for its clarity and readability, enhancing the ease of reading quotes. I wanted to avoid any 'tacky' font that I had seen on other online services.
-- "sans-serif" as a backup
+| Page                   | Description                                                                                                                                   | Desktop | Mobile |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------|--------|
+| Index (landing page)   | A user navigates to the landing page which includes various calls to action to help the user navigate through the platform. | [View](https://www.dropbox.com/scl/fi/uszkzw8qhx21wwzqhh9zi/Index.JPG?rlkey=ozw40656p6di46trganiq6fsr&dl=0) | [View](https://www.dropbox.com/scl/fi/qy0suww2jwk9p9a3idzwb/Index-Mobile.JPG?rlkey=xf6afbdn6gvdcv0tjguuwbj0z&dl=0) |
+| Signup                 | If user is not registered, they can navigate to Signup page to complete the registration form.                               | [View's](https://www.dropbox.com/scl/fi/q2kt3cuvm5l8e6mjrbgkp/Signup.JPG?rlkey=e5byd0mlfyjl0fmwfbh8578ri&dl=0) & [Signup confirmation](https://www.dropbox.com/scl/fi/qws3pbcnt9yai3c8pnx5g/Signup-Account-Created.JPG?rlkey=ge0z16i88o01wc7atkgjr01t4&dl=0) | [View](https://www.dropbox.com/scl/fi/406zh8wyich9bme80beuo/Signup-Mobile.JPG?rlkey=bz0zotasvariyvsd4k2ty9706&dl=0) |
+| Login                  | Once they are registered, users can log in to their accounts.                                                                                                  | [View](https://www.dropbox.com/scl/fi/704pmuiq7w54ztxfq7pcp/Login.JPG?rlkey=v1a5vh6eb3xgw3y7cn9uhhhtm&dl=0) | [View](https://www.dropbox.com/scl/fi/4r9d04yn0qyclnxmkdk37/Login-Mobile.JPG?rlkey=gma6hlemuu2dhduio029u7d2x&dl=0) |
+| Dashboard              | Once logged in, users can create, read, edit, search, and delete their own personal collection of quotes, as intended. | [View](https://www.dropbox.com/scl/fi/7io8wnyoeh3cj0l95nh9a/Dashboard.JPG?rlkey=p3zkpn0fzymv0r3xytknyp5hy&dl=0) | [View](https://www.dropbox.com/scl/fi/pqxjydjyeobrzr1z2b52n/Dashboard-Mobile.JPG?rlkey=sow6o1gwq1tlbyhk19j9ixl66&dl=0) |
 
-## Technologies Used
+## Database Model
 
-- Flask: Python framework for backend development.
-- HTML5, CSS3, JavaScript: Frontend development.
-- PostgreSQL / SQLAlchemy: Database handling.
-- Git, GitHub: Version control and repository hosting.
-- Heroku: Application deployment.
+The database model in my Flask project is made to effectively manage user accounts and the quotes associated with them. Here is an overview of each model that was used for the project:
 
-## Features
+### `User`
 
-- User Authentication: Secure and personalised user experience.
-- Quote Management: CRUD functionality, as well as search function to pinpoint quotes in a hurry.
-- Responsive Design: Compatibility across various devices.
+- **ID**: Serves as the primary key; a unique identifier for each user.
+- **Username**: A unique string field representing the user's chosen username.
+- **Password**: Stores hashed passwords for secure user authentication.
+- **Quotes**: Establishes a one-to-many relationship with the `Quote` model, indicating that a user can own multiple quotes.
+
+The `User` model is crucial for user management, authentication, and associating users with the quotes they add to the application. Utilizing `UserMixin` from Flask-Login assists in handling user sessions and authentication processes.
+
+### `Quote`
+
+- **ID**: Acts as the primary key; a unique identifier for each quote.
+- **Content**: A text field storing the quote itself.
+- **Author Name**: An optional string field for the quote's author.
+- **Author ID**: A foreign key linking to the `User` model, establishing quote ownership.
+- **Created At**: A datetime field indicating when the quote was added.
+- **Updated At**: A datetime field that automatically updates whenever the quote is modified.
+
+The `Quote` model stores individual quotes, including their content and optional author names. It directly relates to the `User` model, enabling the application to track and manage quotes accordingly. The `created_at` and `updated_at` fields provide timestamps for organizational or filtering purposes.
+
+These models enable the application to efficiently manage user authentication, registration, and the personal collection of quotes, providing a robust platform for quote management and sharing.
+
+# Technologies Used
+
+The combination of these technologies provides a robust platform for QuoteDiary, from user interface design to database management and deployment :
+
+### Languages
+
+- **Python**: The primary language used, Python powers the back-end logic, including routing, request handling, and database operations.
+- **HTML**: Structures the content of the web application, forming the foundation of the web pages.
+- **CSS**: Provides styling to the web pages to improve aesthetics and user experience.
+- **JavaScript**: Used minimally to enhance interactivity and user experience on the web front-end.
+
+### Frameworks, Libraries, & Tools
+
+- **Flask**: A micro web framework written in Python, used for serving the application, routing, and handling requests.
+- **Flask Extensions**:
+  - **Flask-SQLAlchemy**: ORM (Object-Relational Mapping) library for Flask to interact with the database.
+  - **Flask-Migrate**: Handles SQLAlchemy database migrations for Flask applications.
+  - **Flask-Login**: Manages user authentication and session management.
+  - **Flask-WTF**: Integrates WTForms for form handling, including validation and rendering.
+  - **Flask-Bcrypt**: Provides hashing utilities for securing passwords.
+- **SQLAlchemy**: ORM library for database interactions, abstracting SQL expressions.
+- **PostgreSQL**: The primary relational database used, especially in deployment to Heroku, for storing and managing application data.
+- **SQLite**: Used as a fallback or during development for local database testing.
+- **Gunicorn**: A Python WSGI HTTP Server for UNIX, serving as the interface between the web server and web applications.
+- **Jinja2**: A modern and designer-friendly templating language for Python, utilised in generating HTML from templates.
+- **Heroku**: A cloud platform as a service (PaaS) used to deploy, manage, and scale the web application.
+
+### Tools & Services
+
+- **Visual Studio Code**: I chose Visual Studio Code as my development environment (IDE) for writing and editing my Flask application's code. Its extensive support for Python and Flask made it an ideal choice for my development needs.
+
+- **Git**: I used Git as the version control system to track changes in the source code throughout the development of this project. It enabled efficient code management, ensuring that every modification was documented and reversible.
+
+- **GitHub**: My project's code repository is hosted on GitHub, which provided me with robust version control and collaboration features.
+
+- **Heroku**: I deployed and ran my application on Heroku, a cloud platform that simplified the deployment process. Heroku's ease of use allowed my application to be accessible via the web without the need to manage servers, making it an excellent choice for hosting.
+
+- **SQLite/PostgreSQL**: During local development, I used SQLite because of its simplicity and zero configuration requirement, making it perfect for development environments. For the production environment, especially on Heroku, I switched to PostgreSQL database provided by CodeInstitute to avoid being charged for the Heroku default database.
+
+- **Flask**: The core of my application was built using Flask, a micro web framework written in Python. Flask provided me with the necessary tools and libraries to build a web application.
+
+- **Flask Extensions**: To enhance my application, I employed various Flask extensions. For example : Flask-SQLAlchemy was used for database interactions, Flask-Migrate for handling database migrations, Flask-Login for managing user sessions, and Flask-WTF for form handling and validation. The full list of extensions can be found in the projects **requirements.txt**
 
 ### Future Features
 
-- I would need to implement a forgot password process as the functionality is lacking without it. If a user forgets their password then at this stage of development there is little that can be done to get back into the account. This would need to be addressed as a priority before any commercial release. I was unable to consider this during this development stage due to time constraints. 
+- **Password Recovery**: To account for the times that a user forgets their password, a password recovery mechanism will be introduced to enable them to retrieve access to their accounts. My list of priorities for future development starts with this.
 
-- I would like to implement a functionality where users can favorite quotes and then list by favorites to help them navigate a large database of quotes. I was unable to consider this during this development stage due to time constraints. 
+- **Favorites System**: I had planned to include a feature that lets users favourite quotes. This would improve the user experience by making it easier for users to browse through a sisable collection of quotes by sorting them according to their favourites. This will be implemented in future development
 
-- I would like to implement a functionality where users can export their quote list to email to allow them to take their quote data anywhere. I was also unable to consider this duruing this development stage due to time constraints. 
+- **Export Quotes to Email**: There were plans to introduce a tool that allows users to export the quote list to email, giving them the freedom to send their quote data outside of the platform. Time constraints prevented this feature from being considered during the present development stage, but it will still be a priority for updates in the future.
 
-## Testing
+- **Quote of the Day**: A feature to provide users with a daily quote for inspiration is also on the development roadmap. This will offer users inspiration each day, allowing them to save the quote to their personal collection.
 
-### Front-End Validation
+# Testing 
 
-#### HTML Validation
-- **Process**: Utilised the W3C Markup Validation Service for each HTML file. Identified and corrected minor issues such as unclosed tags and missing alt attributes. Fixed by enhancing the semantic structure and accessibility, ensuring readability and cross-browser compatibility. WC3 validation is still showing false positives due to the presence of Jinja2
+To facilitate the evaluation of this project, a test account has been set up. You can use the following credentials to log in and assess the functionality of the platform:
 
-#### base.html Validation
-- **Process**: Validated using an online HTML validator.
-- Screenshot: ![base.html Validation Screenshot](https://i.imgur.com/ACqiUCN.png)
+- **Username**: TestAccount2024
+- **Password**: PleaseTestMe2024
 
-#### dashboard.html Validation
-- **Process**: Validated using an online HTML validator.
-- Screenshot: ![dashboard.html Validation Screenshot](https://i.imgur.com/QKgwxt4.png)
+Alternativetly, you can create your own account via the [Signup](https://quote-diary-d98222c5c65a.herokuapp.com/signup) page
 
-#### edit_quote_form.html Validation
-- **Process**: Validated using an online HTML validator.
-- Screenshot: ![edit_quote_form.html Validation Screenshot](https://i.imgur.com/oQMAEyQ.png)
+Manual testing was conducted throughout the development to ensure all functionalities work as expected across various browsers and devices. The testing process covered key features of the Quote Diary application, focusing on user interactions and data integrity.
 
-#### index.html Validation
-- **Process**: Validated using an online HTML validator.
-- Screenshot: ![index.html Validation Screenshot](https://i.imgur.com/oQMAEyQ.png)
+## Key Features and Scenarios Tested
 
-#### login.html Validation
-- **Process**: Validated using an online HTML validator.
-- Screenshot: ![login.html Validation Screenshot](https://i.imgur.com/AAFcegX.png)
+### User Authentication
+- **Login Form**: Tested with valid and invalid credentials. Successful login redirects to the dashboard, while invalid attempts display an appropriate error message.
+- **Signup Form**: Tested the registration process with both valid and invalid data (e.g., existing username with incorrect password). Validation feedback was checked for accuracy.
 
-#### signup.html Validation
-- **Process**: Validated using an online HTML validator.
-- Screenshot: ![signup.html Validation Screenshot](https://i.imgur.com/Rk4vAQI.png)
+### Quote Management
+- **submitting Button**: Clicking the "Submit" button successful actions the quote submission. Tested submitting quotes with both valid and incomplete data. Validation messages appeared correctly, and successful submissions show that the new quote is visible.
+- **Edit Quote Buttons**: For each quote listed under the user's dashboard, the "Edit" button was tested to ensure it navigates to the edit form with the quote's existing content pre-filled. Changes saved reflected immediately upon submission.
+- **Delete Quote Buttons**: The "Delete" functionality for each quote was tested. Confirmation box show up as expected to prevent accidental deletions. Once confirmed, the quote was no longer displayed on the dashboard.
 
-#### CSS Validation
-- **Process**: Employed the W3C CSS Validation Service. No errors presented. ![CSS Validation Screenshot](https://i.imgur.com/HNgPliz.png)
+### Navigation and Responsiveness
+- **Navigation Links**: Tested the responsiveness of navigation links ("Home", which is the QuoteDiary button in top left, "Dashboard", "Login", "Signup", "Logout") across devices. Each link correctly redirected to the expected page without issues.
+- **Responsive Design**: The application was accessed on various devices and browsers (Chrome, Firefox, Safari on desktop, and mobile) to ensure the layout adjusts appropriately. Bootstrap's responsive features were effective across all tested scenarios.
 
-### Accessibility Testing
+### Security and Data Handling
+- **Form Validation**: All forms (login, signup, add/edit quote) were tested for validation. This included testing for required fields, string length, and unique constraints (e.g., usernames).
+- **Session Management**: User sessions were tested by logging in, navigating the site, and logging out. Session persistence worked as expected.
 
-- **Process**: Conducted automated scans with Axe.
-- Screenshot: ![Ax tool screenshot ](https://i.imgur.com/cWMDlQY.png)
+## Results
 
-### Performance Testing
-
-- **Process**: Google's Lighthouse was used to conduct tests, initially scoring around 60 for mobile.
-- Screenshot: ![Lighthouse Screenshot - Desktop / Index ](https://i.imgur.com/TuOcEh8.png)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Login](https://i.imgur.com/2pRTyEI.png)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Signup](https://i.imgur.com/N0Rngld.png)
-- Screenshot: ![Lighthouse Screenshot - Desktop / Dashboard](https://i.imgur.com/tTuxm2o.png)
-
-### Responsiveness / Device Testing
-
-To ensure this MVP delivers a seamless experience across different devices, I adopted a systematic approach to device testing:
-
-- **Manual Testing on Physical Devices:**  
-  Initially, I began with hands-on testing using devices I had access to. This included a desktop monitor, a tablet, and android & apple smartphone models. This hands-on approach gave me a feel for the user experience. I noticed that the Bootstrap styling provided a good user experience and was reliable. 
-
-  #### **Button Functionality Test**:
-
-- **What I Expected**: When a user clicks on any button, it should promptly trigger the intended action without glitches. 
-- **What I Did**: I tested this on every button avaliable on the website and they all work as intended. I stress tested this by clicking them multiple times.
-- **Outcome**: All buttons were responsive and performed their designated functions without issue. Gathering feedback from family was important. They tested the application on their devices and reported no issues with the button functionality.
-
-### Browser Compatibility
-
-Quote Diary was tested on major browsers including Google Chrome, Firefox, Safari, and Microsoft Edge to ensure a uniform experience. My partner tested it on her devices using Chrome and Safari. No issues presented.
+The Quote Diary application's basic capabilities are operating as anticipated, based on the manual testing. The quote management system is robust yet user-friendly, the forms accurately validate user input, and user identification is secure. Smooth navigation provides an enjoyable user experience on a variety of devices and screen sizes.
 
 ## Problems and Resolutions
 
-Throughout the development, several bugs were encountered and promptly addressed. There was one major issue that severely impacted the development of this process (5):
+Throughout the development, several bugs were encountered and promptly addressed. There was one major issue that severely impacted the development of this process (see 5):
 
 **Intermittent Login Failures**:
    - **Problem**: I occasionally faced issues logging in. The page would not load and would crash browser
@@ -180,7 +220,7 @@ Throughout the development, several bugs were encountered and promptly addressed
 2. **Delayed Quote Loading**:
    - **Problem**: Slow loading of quotes. The higher the quote list grew, the loading of quotes was slower when refreshed
    - **Fix**: Reworked database query optimisation
-   - **Outcome**: Improved speed and responsiveness in quote retrieval. There seems to be no issues with higher quote lists at this time.
+   - **Outcome**: Improved speed and responsiveness in quote retrieval. There seems to be limited issues with higher quote lists at this time.
 
 3. **Responsive Layout Discrepancies**:
    - **Problem**: Layout issues on mobile devices.
@@ -193,36 +233,201 @@ Throughout the development, several bugs were encountered and promptly addressed
    - **Outcome**: Database scheema seems to be working as intended.
 
 5. **Secret Key / Database issues**:
-   - **Problem**: One of the main issues that I had was releated to the project that I had started before this, which was a very simular idea. The issue that I faced was that I accidently pushed my secret key to GitHub, which was a security issue. I spent over 5 hours trying to fix the issue by watching online tutorials on how to roll back, however, the rollback did not seem to work. My database did not match up with the rollback which resulted in my having to completely scrap the project. This was my biggest issue during development, which resulted in me losing around 30 hours in total. 
+   - **Problem**: One of the main issues that I had was releated to the project that I had started before this, which was a very simular idea. The issue that I faced was that I accidently pushed my secret key to GitHub, which was a security issue. I spent over 5 hours trying to fix the issue by viewing online tutorials on how to roll back, however, the rollback did not seem to work. My database did not match up with the rollback which resulted in my having to completely scrap the project. This was my biggest issue during development, which resulted in me losing around 30 hours in total. 
    - **Fix**: I was unable to fix. 
-   - **Outcome**: I had to re-start the project under a different name and repository, which is the project that you are viewing today. This is why my commits seem a lot less than expected. My original project codebase had around 20 commits at the stage of deletion. I carried over a lot of my personal code to this project to avoid having to start completely from scratch. This is why I have had less time than needed for the testing of the project in every aspect and I had to focus on an MVP of Quote Diary. During the next stage of development I would focus on revamping everything from the color schemes, to the testing,etc. 
+   - **Outcome**: I had to re-start the project under a different name and repository, which is the project that you are viewing today. This is why my commits seem a lot less than expected. My original project codebase had around 20/30 commits at the stage of deletion. I carried over a lot of my personal code to this project to avoid having to start completely from scratch. This is why I had to focus on an MVP of Quote Diary rather than the version I first intended to complete. 
 
-## Deployment
+## Performance checks
 
-### Heroku 
+Ensuring compliance with web standards and best practices, Quote Diary was validated with various tools to check HTML, CSS, and JavaScript. Here are the results:
 
-The app was deployed to Heroku. You can view the deployed version using the following steps:
+### HTML validation
 
-1. Navigate to the main page of the app at [https://quote-diary-d98222c5c65a.herokuapp.com/](https://quote-diary-d98222c5c65a.herokuapp.com/).
+HTML validation was performed using the [W3C Markup Validation Service](https://validator.w3.org/). **All pages passed** :
 
-### Forking the GitHub Repository
+- **Index**: [View Report](https://www.dropbox.com/scl/fi/c6xqnhe0l5lw3oo8rywsr/Index-Validation-Pass.pdf?rlkey=x1uq2iu7rbku1ezxliuv5dr8w&dl=0)
+- **Signup**: [View Report](https://www.dropbox.com/scl/fi/7hwuxdduct50s9xuesmva/Signup-Validation-Pass.pdf?rlkey=hcw8ab6hao7fd6izzfrsyyf5f&dl=0)
+- **Login**: [View Report](https://www.dropbox.com/scl/fi/6q6lqs1i7ctkoknc1h4pn/Login-Validation-Pass.pdf?rlkey=s3wd9o3lzpra2bpxzo2v1en1a&dl=0)
+- **Dashboard**: [View Report](https://www.dropbox.com/scl/fi/y53908otqd40n327mwmdk/Dashboard-Validation-Pass.pdf?rlkey=7emdgivjkb2y53oib423rpc0h&dl=0)
 
-If you wish to contribute to this project, you can fork the repository. This means you'll have a copy of the repository in your GitHub account which can be edited without affecting the original project. Here's how you can fork the repository:
+### CSS Validation
 
-1. Log in to GitHub and navigate to the repository [https://github.com/CroftsDeveloper/Quote_Diary.git](https://github.com/CroftsDeveloper/Quote_Diary.git).
-2. In the top-right corner of the page, click the "Fork" button.
+CSS validation was performed using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/). **The stylesheet passed**:
 
-### Cloning the GitHub Repository
+- **Styles**: [View Report](https://www.dropbox.com/scl/fi/duv2raszj20urmkotvseb/Css-Validator-Pass.pdf?rlkey=2ext5z7fp5n9h7y6jbdpprzd3&dl=0)
 
-If you wish to work on this project locally, you can clone the repository. Here's how:
+### JavaScript Validation
 
-1. Navigate to the desired location on your computer where you want to host the cloned repository.
-2. Open your terminal or command prompt.
-3. Type `git clone https://github.com/CroftsDeveloper/Quote_Diary.git` and press "Enter".
-4. The project will be cloned to your local machine.
+JavaScript validation was conducted using [JSHint](https://jshint.com/). The main script passed validation after small adjustments.
 
-Ensure that you navigate into the correct directory before you start editing or view the files!
+- **Scripts**: [View Report](https://www.dropbox.com/scl/fi/druekfkbbpjddhpey0tjh/Javascript-Validation-Pass-as-variable-warning-false-positive.pdf?rlkey=7kj2qth6edxvsspfs541rduq9&dl=0)
 
-### Favicon
+## Lighthouse Performance Checks
 
-- I have downloaded and implemented a free Favicon from [favicon.io](https://favicon.io/emoji-favicons/bookmark)
+Below are the Lighthouse performance checks for various pages of the application, including scores for Performance, Accessibility, Best Practices, and SEO.
+
+#### Index Page
+
+| Performance | Accessibility | Best Practices | SEO | Report |
+|-------------|---------------|----------------|-----|--------|
+| 99          | 100           | 96             | 100 | [View Report](https://www.dropbox.com/scl/fi/t9gn7g5kfixnnzdhiefvw/Index-page.JPG?rlkey=g0dcrg9j1dnfv7fbjwm0g9mru&dl=0) |
+
+#### Signup Page
+
+| Performance | Accessibility | Best Practices | SEO | Report |
+|-------------|---------------|----------------|-----|--------|
+| 99          | 94            | 96             | 100 | [View Report](https://www.dropbox.com/scl/fi/lnxmaot99leq9248z4y2j/Signup-page.JPG?rlkey=dvaohejibse4gukc5ixsrro2m&dl=0) |
+
+#### Login Page
+
+| Performance | Accessibility | Best Practices | SEO | Report |
+|-------------|---------------|----------------|-----|--------|
+| 98          | 95            | 96             | 100 | [View Report](https://www.dropbox.com/scl/fi/k5e0cypd3xom68dom3bbi/Login-page.JPG?rlkey=srxqchptlbps5qi5ny8w5eq4c&dl=0) |
+
+#### Dashboard Page
+
+| Performance | Accessibility | Best Practices | SEO | Report |
+|-------------|---------------|----------------|-----|--------|
+| 96          | 94            | 100            | 100 | [View Report](https://www.dropbox.com/scl/fi/v07mkmakc7i65crttnnhz/Dashboard.JPG?rlkey=b880uw4aetjn6y26u2udc8rw1&dl=0) |
+
+# Deployment
+
+## Prerequisites
+
+- Python 3.8 or newer
+- Flask
+- SQLAlchemy
+- Other Python packages as mentioned in `requirements.txt`
+
+## Development (Running Locally)
+
+Follow these steps to set up and run the project locally:
+
+1. **Clone the Repository**: Clone the project repository to your local machine by running:
+   ```bash
+   git clone https://github.com/CroftsDeveloper/Quote_Diary.git
+   ```
+
+2. **Navigate to the Project Directory**:
+
+```bash
+cd Quote_Diary
+   ```
+3. **Install the necessary Python packages from the requirements.txt file** :
+
+```bash
+pip install -r requirements.txt
+   ```
+
+4. **Set up necessary environment variables**: Create a .env file (and add it to a .gitignore) in the project root with your keys:
+
+**SECRET_KEY**: A secret key for your Flask application.
+
+**DATABASE_URL**: The URL to your database; for local development, this will typically be a SQLite database path.
+
+5. **Start your application** : 
+
+You can then start your Flask application using the Flask CLI :
+
+```bash
+flask run
+   ```
+**Your application will now be accessible at http://127.0.0.1:5000/.**
+
+## Live Deployment (Heroku)
+
+Deploying this Flask application to Heroku allows it to be accessible on the web. If you're setting up your own instance of the application on Heroku, follow these steps:
+
+1. **Create a Heroku Account**: If you don't already have one, sign up for a Heroku account at [Heroku's website](https://www.heroku.com/).
+2. **Install Heroku CLI**: Download and install the Heroku Command Line Interface (CLI) from [Heroku's Dev Center](https://devcenter.heroku.com/articles/heroku-cli). This tool allows you to manage your Heroku apps from the terminal.
+3. **Log In to Heroku CLI**: Open your terminal and log in to Heroku using the following command, then follow the prompts:
+   ```bash
+   heroku login
+   ```
+4. **Create a New Heroku App:** Create a new app on Heroku. You can specify a unique name for your app or let Heroku generate one for you. If you choose to name it, replace <YOUR_APP_NAME> with your desired app name:
+```bash
+   heroku create <YOUR_APP_NAME>
+   ```
+5. **Push to Heroku**: Deploy the application to Heroku by pushing your code from the local repository's main branch to the Heroku remote:
+```bash
+   git push heroku main
+   ```
+6. **Configure Environment Variables**: Set up the necessary environment variables on Heroku. Do this via the Heroku dashboard for your app under "Settings" > "Reveal Config Vars". Essential variables to include are:
+   - `SECRET_KEY`: Your secret key.
+   - `DATABASE_URL`: The URL for your database.
+
+7. **Access Your Application**: Once deployed, your application can be accessed through the URL provided by Heroku. You can also open it directly from the terminal:
+
+   ```bash
+   heroku open
+   ```
+
+**The deployed URL typically follows the format: `https://<YOUR_APP_NAME>.herokuapp.com/.**
+
+# Security Measures
+
+I built my Flask application with a number of security features in place to protect user information and interactions. A breakdown of various implementations is given below:
+
+### Password Hashing with Flask-Bcrypt
+
+I hash passwords using Flask-Bcrypt before storing them in the database. By taking this precaution, user passwords are kept safe and shielded from unauthorised access. I've included it in my code as follows:
+
+```python
+# app.py
+
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt(app)
+hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+ ```
+
+
+### Session Management with Flask-Login
+
+I use Flask-Login to securely manage user sessions. It provides a number of functions without jeopardising user session security.
+
+```python
+# app.py
+
+from flask_login import LoginManager, login_user, current_user, logout_user, login_required
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+ ```
+
+### Environment Variables for Sensitive Information
+
+I use environment variables to store sensitive information like the SECRET_KEY. This practice helps in keeping the application's configuration secure and prevents hard-coded sensitive information:
+
+```python
+# app.py
+
+from dotenv import load_dotenv
+
+load_dotenv()
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+ ```
+
+### CSRF Protection with Flask-WTF
+```python
+# forms.py
+
+from flask_wtf import FlaskForm
+```
+
+All of these security precautions are essential to keeping my Flask programme resistant to different security risks, protecting user information, and improving the overall security posture of my application. 
+
+# Credits
+
+- **Media Files**: I have downloaded and implemented a free Favicon from favicon.io
+
+- **Readme.so**: [Readme.so](https://readme.so/) is simple online README.md editor that allowed to customise my projects readme conveniently online and see the visual outcome immediately.
+
+- **Bootstrap**: [Official Documents](https://getbootstrap.com/docs/5.3/getting-started/introduction/) were reviewed at multiple points throughout this project and were essential for me to be able to get to the finished MVP.
+
+# Contributions
+
+If you would like to contribute to Quote Diary, please reach out to me at :
+
+- **Name**: Samuel Crofts
+- **Email**: samcrofts2020@gmail.com

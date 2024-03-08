@@ -12,8 +12,8 @@
                 <!-- Input for quote content with dynamic character count -->
                 <div class="form-group mb-3">
                     {{ form.content.label(class="form-label", for="quoteContent") }}
-                    {{ form.content(id="quoteContent", class="form-control") }}
-                    <small id="contentCharCount" class="form-text text-muted">Character Count: 0/500</small>
+                    {{ form.content(id="quoteContent", class="form-control", maxlength="500") }}
+                    <small id="contentCharCount" class="form-text text-white bg-dark p-1">Character Count: {{ form.content.data|length }}/500</small>
                     <!-- Error handling for content input -->
                     {% if form.content.errors %}
                     <div class="alert alert-danger" role="alert">
@@ -21,11 +21,11 @@
                     </div>
                     {% endif %}
                 </div>
-                <!-- Input for author name with character count -->
+                <!-- Input for author name with dynamic character count -->
                 <div class="form-group mb-3">
-                    {{ form.author.label(class="form-label", for="quoteAuthor") }}
-                    {{ form.author(id="quoteAuthor", class="form-control") }}
-                    <small id="authorCharCount" class="form-text text-muted">Character Count: 0/100</small>
+                    {{ form.author.label(class="form-label", for="authorInput") }}
+                    {{ form.author(id="authorInput", class="form-control", maxlength="100") }}
+                    <small id="authorCharCount" class="form-text text-white bg-dark p-1">Character Count: {{ form.author.data|length }}/100</small>
                     <!-- Error handling for author input -->
                     {% if form.author.errors %}
                     <div class="alert alert-danger" role="alert">
