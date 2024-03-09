@@ -36,7 +36,7 @@ Here are the deployed links :
 
 Here are the User Stories that I set out to meet and the outcome upon finalised MVP :
 
-# User Stories
+## User Stories
 
 | User Stories | Fulfillment |
 | ------------ | ----------- |
@@ -45,7 +45,7 @@ Here are the User Stories that I set out to meet and the outcome upon finalised 
 | **Navigation and Search Capability**: "As a user of the Quote Diary, I want to be able to navigate back to my quotes easily and search for specific ones, so that I can efficiently find and reference quotes whenever needed." | My project ensures easy navigation for users to access their quotes and includes a search functionality for quick retrieval of specific quotes, enhancing user experience. |
 | **Mobile-Friendly Viewing**: "As a user of the Quote Diary, I want the platform to be optimised for viewing on mobile devices, ensuring that the layout and functionality remain intact and user-friendly on smaller screens." | My project is designed to be responsive, providing an optimal viewing and interaction experience across various devices, including tablets, desktop computers, and mobile devices. This ensures that users can access and use the Quote Diary seamlessly on any device. |
 
-# Design Decisions
+## Design Decisions
 
 In order to ensure optimal viewing and interaction across a variety of devices, including tablets, desktop computers, and mobile devices, the website was created with an easy-to-use but responsive structure.
 
@@ -55,10 +55,11 @@ Below are the wireframes designed for my key pages, illustrating the planned lay
 
 | Page               | Wireframe Link       |
 |--------------------|----------------------|
-| Index (initial landing page)            | [Wireframe]()            |
-| Login              | [Wireframe]()            |
-| Signup           | [Wireframe]()            |
-| Dashboard  | [Wireframe]()            |
+| Index (initial landing page)            | [Wireframe](https://www.dropbox.com/scl/fi/6497mrfnddrfuxstelnld/index.jpg?rlkey=4hbppzcyqb8b1m6al89rl9ut7&dl=0)            |
+| Signup           | [Wireframe](https://www.dropbox.com/scl/fi/uu20y7gb0slr8j34cxqp2/signup.jpg?rlkey=wx206v394p7g2v9n974g3bk1y&dl=0)            |
+| Login              | [Wireframe](https://www.dropbox.com/scl/fi/duopxham7vm044gvcuk9h/login.jpg?rlkey=hvt1ak46jucfz22gpyvqf63xc&dl=0)            |
+| Dashboard  | [Wireframe](https://www.dropbox.com/scl/fi/xxzrke5mgkwz7glbqf9fn/dashboard.jpg?rlkey=dyznaw9drw8pxvbtwybdlrpya&dl=0)  
+| Edit Quote           | [Wireframe](https://www.dropbox.com/scl/fi/60r4fwzdateqsihm7s3ag/edit_quote.jpg?rlkey=lbqmnkfjfsmtbm9aq0ujuaoe7&dl=0)            |       |
 
 ## Features and Functionalities
 
@@ -81,12 +82,12 @@ I chose a simple dark and clean background. I chose this primarily because I did
 
 This background may be seen as too dark for the project. This would be something I would consider at another stage of development in the future and I would like to implement different modes, such as dark or light. This will help customise the project to users wishes. **I did not have the time to consider this at this stage of the MVP**
 
-#### Fonts
+## Fonts
 
 - **"Roboto"** for its clarity and readability, enhancing the ease of reading quotes. I wanted to avoid any 'tacky' font that I had seen on other online services.
 - **"sans-serif"** as a backup font
 
-## User Structure / Flow
+## User Flow
 
 | Page                   | Description                                                                                                                                   | Desktop | Mobile |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------|--------|
@@ -97,29 +98,71 @@ This background may be seen as too dark for the project. This would be something
 
 ## Database Model
 
-The database model in my Flask project is made to effectively manage user accounts and the quotes associated with them. Here is an overview of each model that was used for the project:
+This section provides an overview of the database schema used in the Quote Diary project, detailing the models, their attributes, relationships, and specific functionalities provided by Flask extensions like `Flask-Login`.
 
-### `User`
+### Entities and Relationships
 
-- **ID**: Serves as the primary key; a unique identifier for each user.
-- **Username**: A unique string field representing the user's chosen username.
-- **Password**: Stores hashed passwords for secure user authentication.
-- **Quotes**: Establishes a one-to-many relationship with the `Quote` model, indicating that a user can own multiple quotes.
+#### `User` Model
 
-The `User` model is crucial for user management, authentication, and associating users with the quotes they add to the application. Utilizing `UserMixin` from Flask-Login assists in handling user sessions and authentication processes.
+The `User` model is for managing user information and authentication within the application.
 
-### `Quote`
+- **Attributes**:
+  - `id`: Integer, Primary Key. Uniquely identifies each user.
+  - `username`: String(100), Unique, Not Nullable. Represents the user's chosen username.
+  - `password`: String(200), Not Nullable. Stores the user's hashed password for security purposes.
 
-- **ID**: Acts as the primary key; a unique identifier for each quote.
-- **Content**: A text field storing the quote itself.
-- **Author Name**: An optional string field for the quote's author.
-- **Author ID**: A foreign key linking to the `User` model, establishing quote ownership.
-- **Created At**: A datetime field indicating when the quote was added.
-- **Updated At**: A datetime field that automatically updates whenever the quote is modified.
+- **Relationships**:
+  - `quotes`: Establishes a one-to-many relationship with the `Quote` model. This link indicates that a single user can create and own multiple quotes. Defined by `db.relationship`, it facilitates easy access to a user's quotes through the `author` back reference.
 
-The `Quote` model stores individual quotes, including their content and optional author names. It directly relates to the `User` model, enabling the application to track and manage quotes accordingly. The `created_at` and `updated_at` fields provide timestamps for organizational or filtering purposes.
+Utilising `UserMixin` from `Flask-Login` enriches the `User` model with properties and methods necessary for authentication and session management, such as `is_authenticated` and `get_id`.
 
-These models enable the application to efficiently manage user authentication, registration, and the personal collection of quotes, providing a robust platform for quote management and sharing.
+#### `Quote` Model
+
+The `Quote` model stores the individual quotes added by users, linking them back to their authors.
+
+- **Attributes**:
+  - `id`: Integer, Primary Key. A unique identifier for each quote.
+  - `content`: Text, Not Nullable. The actual text of the quote.
+  - `author_name`: String(100), Optional. The name of the quote's author, if provided by the user.
+  - `author_id`: Integer, Foreign Key to `User.id`, Not Nullable. Establishes ownership of the quote by linking it to a specific user.
+  - `created_at`: DateTime, Default to current UTC datetime. Records when the quote was added.
+  - `updated_at`: DateTime, Automatically updated on quote modification. Tracks when the quote was last updated.
+
+- **Relationships**:
+  - Belongs to the `User` model. Each quote is associated with a single user, identified through the `author_id` foreign key. The `author` back reference in the `User` model facilitates this connection.
+
+### Design Rationale
+
+The design of the database schema minimises redundancy by following normalisation principles, which ensure effective data management and integrity. The clear separation of quote storage from user management and the relationship definitions allow for robust functionality that is specific to the needs of the application.
+
+### Schema Visualisation
+
+```plaintext
+User Model:
++-----------+-------------+-----------------------------------+
+| Field     | Data Type   | Description                       |
++-----------+-------------+-----------------------------------+
+| ID        | Integer     | Primary Key (PK)                  |
+| Username  | String(100) | Unique username for the user      |
+| Password  | String(200) | Hashed password for user security |
++-----------+-------------+-----------------------------------+
+
+Quote Model:
++-------------+------------------+-------------------------------------------------+
+| Field       | Data Type        | Description                                     |
++-------------+------------------+-------------------------------------------------+
+| ID          | Integer          | Primary Key (PK)                                |
+| Content     | Text             | Text content of the quote                       |
+| Author Name | String(100)      | Optional author name of the quote               |
+| Author ID   | Integer          | Foreign Key (FK) references User.ID             |
+| Created At  | DateTime         | Timestamp when quote was created, default UTC   |
+| Updated At  | DateTime         | Timestamp when quote was last updated           |
++-------------+------------------+-------------------------------------------------+
+
+```
+Relationships:
+- Each `User` can have multiple `Quotes`. (One-to-Many relationship)
+- `Author ID` in `Quote` model links to `ID` in `User` model, establishing ownership.
 
 # Technologies Used
 
@@ -132,7 +175,7 @@ The combination of these technologies provides a robust platform for QuoteDiary,
 - **CSS**: Provides styling to the web pages to improve aesthetics and user experience.
 - **JavaScript**: Used minimally to enhance interactivity and user experience on the web front-end.
 
-### Frameworks, Libraries, & Tools
+### Frameworks & libraries
 
 - **Flask**: A micro web framework written in Python, used for serving the application, routing, and handling requests.
 - **Flask Extensions**:
@@ -168,6 +211,8 @@ The combination of these technologies provides a robust platform for QuoteDiary,
 
 - **Password Recovery**: To account for the times that a user forgets their password, a password recovery mechanism will be introduced to enable them to retrieve access to their accounts. My list of priorities for future development starts with this.
 
+- **Amin Features / Panel**: An important next step is going to be to implement an admin panel. Administrators will soon be able to oversee user accounts. This panel will act as a central oversight point, guaranteeing the platform's quality and integrity and offering the means to promptly handle user requests and content problems.
+
 - **Favorites System**: I had planned to include a feature that lets users favourite quotes. This would improve the user experience by making it easier for users to browse through a sisable collection of quotes by sorting them according to their favourites. This will be implemented in future development
 
 - **Export Quotes to Email**: There were plans to introduce a tool that allows users to export the quote list to email, giving them the freedom to send their quote data outside of the platform. Time constraints prevented this feature from being considered during the present development stage, but it will still be a priority for updates in the future.
@@ -183,9 +228,31 @@ To facilitate the evaluation of this project, a test account has been set up. Yo
 
 Alternativetly, you can create your own account via the [Signup](https://quote-diary-d98222c5c65a.herokuapp.com/signup) page
 
-Manual testing was conducted throughout the development to ensure all functionalities work as expected across various browsers and devices. The testing process covered key features of the Quote Diary application, focusing on user interactions and data integrity.
-
 ## Key Features and Scenarios Tested
+
+Testing was conducted throughout development to ensure all functionalities work as expected across various browsers and devices. The testing process covered key features of the Quote Diary application, focusing on user interactions and data integrity.
+
+### Database Connectivity and Integrity Verification
+
+A database query test was created and performed to ensure an accurate evaluation of the Quote Diary platform, particularly verifying the integrity and connection of the live database hosted on Heroku. This involved writing a `query_db.py` script that would interact directly with the PostgreSQL database used for the project in order to retrieve every username that was recorded there. 
+
+This strategy was justified by the need to demonstrate how the programme could communicate with the database and reliably retrieve data, hence presenting the live environment's operating status.
+
+The steps followed were as detailed below:
+
+1. **Script Development**: Using the `psycopg2` library, a Python script called `query_db.py` was written to connect to the PostgreSQL database using the `DATABASE_URL` environment variable. This variable is configured to dynamically match the URL of the database. Here is a breakdown of the script :
+
+    - **Imports and Setup**: The script begins by importing `psycopg2` for PostgreSQL database interaction and `os` for accessing environment variables.
+    - **Establishing Database Connection**: Utilising `psycopg2.connect`, it establishes a connection to the database using `DATABASE_URL`.
+    - **Creating a Cursor**: A cursor is created with `conn.cursor()` to perform database operations.
+    - **Defining and Executing the Query**: The script defines a SQL query, `SELECT username FROM "user";`, and executes it to fetch usernames.
+    - **Fetching and Printing Usernames**: It retrieves all the rows returned by the query and prints each username, confirming the script's capability to access and retrieve data. 
+
+2. **Query Execution**: The execution of the query selected all usernames from the `user` table.
+
+3. **Security Measures**: I made sure of the inclusion of `query_db.py` in the project's `.gitignore` file to safeguard against exposure of sensitive database connection details, preserving the database's security.
+
+5. **Execution and Observations**: Executed locally, the script's performance can be seen [here](https://www.dropbox.com/scl/fi/tdqjtqimyh204cuwadtka/query_db-result.JPG?rlkey=0ymijbqpzgl3pk33l1rk3jpfz&dl=0), showcasing the return of multiple **test** usernames (note none of the usernames are real world users). This outcome evidences the database's setup and functionality in the live environment on Heroku.
 
 ### User Authentication
 - **Login Form**: Tested with valid and invalid credentials. Successful login redirects to the dashboard, while invalid attempts display an appropriate error message.
@@ -258,7 +325,7 @@ CSS validation was performed using the [W3C CSS Validation Service](https://jigs
 
 ### JavaScript Validation
 
-JavaScript validation was conducted using [JSHint](https://jshint.com/). The main script passed validation after small adjustments.
+JavaScript validation was conducted using [JSHint](https://jshint.com/). **The main script passed validation after small adjustments**
 
 - **Scripts**: [View Report](https://www.dropbox.com/scl/fi/druekfkbbpjddhpey0tjh/Javascript-Validation-Pass-as-variable-warning-false-positive.pdf?rlkey=7kj2qth6edxvsspfs541rduq9&dl=0)
 
@@ -291,6 +358,47 @@ Below are the Lighthouse performance checks for various pages of the application
 | 96          | 94            | 100            | 100 | [View Report](https://www.dropbox.com/scl/fi/v07mkmakc7i65crttnnhz/Dashboard.JPG?rlkey=b880uw4aetjn6y26u2udc8rw1&dl=0) |
 
 # Deployment
+
+## Quote Diary Project Structure
+
+Here is an explanation of the structure for the Quote Diary project : 
+
+### Top-level Files
+
+- **.gitignore**: Ignores files from git, like environment variables.
+- **Procfile**: Config for Heroku to run the app.
+- **README.md**: Provides a comprehensive overview of the project.
+- **requirements.txt**: Python packages required for the project.
+
+### Application Modules
+
+- **app.py**: Main Flask app with routes and configurations.
+- **extensions.py**: Initialises Flask extensions.
+- **forms.py**: Flask-WTF forms for user input and validation.
+- **models.py**: Project models for the database structure.
+
+### Migrations Directory
+
+Handles database schema changes with Alembic migrations.
+
+- **alembic.ini**: Alembic configuration file.
+- **env.py**: Sets up the migration environment for Alembic.
+- **versions/**: Contains individual migration scripts.
+
+### Static and Templates Directories
+
+- **static/**: Contains static files like CSS, JavaScript, and images.
+  - **favicon.ico**: Website favicon.
+  - **script.js**: JavaScript for dynamic page behavior.
+  - **style.css**: Custom CSS styles for the UI.
+
+- **templates/**: Jinja2 templates for HTML content.
+  - **base.html**: Base template for common structures.
+  - **dashboard.html**: User dashboard for quote management.
+  - **edit_quote_form.html**: Form for editing quotes.
+  - **index.html**: Landing page of the website.
+  - **login.html**, **signup.html**: Authentication pages.
+
 
 ## Prerequisites
 
@@ -325,7 +433,25 @@ pip install -r requirements.txt
 
 **DATABASE_URL**: The URL to your database; for local development, this will typically be a SQLite database path.
 
-5. **Start your application** : 
+5. **Virtual Environment** : 
+
+It's recommended to use a virtual environment to avoid conflicts with other Python projects:
+
+```bash
+python -m venv venv
+# On Windows use `venv\Scripts\activate` # On macOS and Linux use 'source venv/bin/activate'
+   ```
+
+6. **Database Initialisation and Migrations**
+
+Before running the application, initialise your database and perform any necessary migrations:
+
+```bash
+flask db init
+flask db migrate -m "Initial migration."
+flask db upgrade
+   ```
+7. **Start your application** : 
 
 You can then start your Flask application using the Flask CLI :
 
@@ -344,6 +470,7 @@ Deploying this Flask application to Heroku allows it to be accessible on the web
    ```bash
    heroku login
    ```
+
 4. **Create a New Heroku App:** Create a new app on Heroku. You can specify a unique name for your app or let Heroku generate one for you. If you choose to name it, replace <YOUR_APP_NAME> with your desired app name:
 ```bash
    heroku create <YOUR_APP_NAME>
@@ -356,7 +483,15 @@ Deploying this Flask application to Heroku allows it to be accessible on the web
    - `SECRET_KEY`: Your secret key.
    - `DATABASE_URL`: The URL for your database.
 
-7. **Access Your Application**: Once deployed, your application can be accessed through the URL provided by Heroku. You can also open it directly from the terminal:
+7. **Database Migrations:** : To set up your database tables on Heroku, run your migrations using the Heroku CLI:
+
+```
+heroku run flask db upgrade -a <YOUR_APP_NAME>
+   ```
+
+This command applies the migration scripts you've created to your Heroku database, ensuring your database schema is correctly set up for your application.
+
+8. **Access Your Application**: Once deployed, your application can be accessed through the URL provided by Heroku. You can also open it directly from the terminal:
 
    ```bash
    heroku open
@@ -421,13 +556,13 @@ All of these security precautions are essential to keeping my Flask programme re
 
 - **Media Files**: I have downloaded and implemented a free Favicon from favicon.io
 
-- **Readme.so**: [Readme.so](https://readme.so/) is simple online README.md editor that allowed to customise my projects readme conveniently online and see the visual outcome immediately.
+- **Readme.so**: [Readme.so](https://readme.so/) is simple online README.md editor that allowed me to customise my projects readme conveniently online and see the visual outcome immediately.
 
 - **Bootstrap**: [Official Documents](https://getbootstrap.com/docs/5.3/getting-started/introduction/) were reviewed at multiple points throughout this project and were essential for me to be able to get to the finished MVP.
 
 # Contributions
 
-If you would like to contribute to Quote Diary, please reach out to me at :
+Quote Diary project is released under MIT License. If you would like to contribute to Quote Diary, please reach out to me at :
 
 - **Name**: Samuel Crofts
 - **Email**: samcrofts2020@gmail.com
