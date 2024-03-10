@@ -12,7 +12,7 @@
 - [Database Model](#database-model)
 - [Technologies Used](#technologies-used)
   - [Languages](#languages)
-  - [Frameworks & Libraries](#frameworks-libraries)
+  - [Frameworks & Libraries](#frameworks--libraries)
   - [Tools & Services](#tools--services)
   - [Future Features](#future-features)
 - [Testing](#testing)
@@ -330,6 +330,7 @@ HTML validation was performed using the [W3C Markup Validation Service](https://
 - **Signup**: [View Report](https://www.dropbox.com/scl/fi/7hwuxdduct50s9xuesmva/Signup-Validation-Pass.pdf?rlkey=hcw8ab6hao7fd6izzfrsyyf5f&dl=0)
 - **Login**: [View Report](https://www.dropbox.com/scl/fi/6q6lqs1i7ctkoknc1h4pn/Login-Validation-Pass.pdf?rlkey=s3wd9o3lzpra2bpxzo2v1en1a&dl=0)
 - **Dashboard**: [View Report](https://www.dropbox.com/scl/fi/y53908otqd40n327mwmdk/Dashboard-Validation-Pass.pdf?rlkey=7emdgivjkb2y53oib423rpc0h&dl=0)
+- **Edit Quote**: [View Report](https://www.dropbox.com/scl/fi/w76hyb8p18k7dkxv5s28a/Edit-Quote-Pass.pdf?rlkey=bjholjyfexb3aaphk6j91mbjr&dl=0)
 
 ### CSS Validation
 
@@ -370,6 +371,13 @@ Below are the Lighthouse performance checks for various pages of the application
 | Performance | Accessibility | Best Practices | SEO | Report |
 |-------------|---------------|----------------|-----|--------|
 | 96          | 94            | 100            | 100 | [View Report](https://www.dropbox.com/scl/fi/v07mkmakc7i65crttnnhz/Dashboard.JPG?rlkey=b880uw4aetjn6y26u2udc8rw1&dl=0) |
+
+#### Edit Quote
+
+| Performance | Accessibility | Best Practices | SEO | Report |
+|-------------|---------------|----------------|-----|--------|
+| 99          | 100           | 100            | 100 | [View Report](https://www.dropbox.com/scl/fi/zbxlqxsgsbyfgby7zcqx5/Edit-Quote.JPG?rlkey=th8y0z6qc5ez13ashdl3pwm3j&dl=0) |
+
 
 # Deployment
 
