@@ -7,22 +7,40 @@
   - [Strategy](#strategy)
     - [User Stories](#user-stories)
     - [Design Decisions](#design-decisions)
+  - [Wireframes](#wireframes)
+- [Features and Functionalities](#features-and-functionalities)
+- [Database Model](#database-model)
 - [Technologies Used](#technologies-used)
   - [Languages](#languages)
   - [Frameworks & Libraries](#frameworks-libraries)
-  - [Tools & Services](#tools-services)
+  - [Tools & Services](#tools--services)
   - [Future Features](#future-features)
 - [Testing](#testing)
-- [Deployment](#deployment)
+  - [Key Features and Scenarios Tested](#key-features-and-scenarios-tested)
+  - [Database Connectivity and Integrity Verification](#database-connectivity-and-integrity-verification)
+  - [User Authentication](#user-authentication)
+  - [Quote Management](#quote-management)
+  - [Navigation and Responsiveness](#navigation-and-responsiveness)
+  - [Security and Data Handling](#security-and-data-handling)
+  - [Problems and Resolutions](#problems-and-resolutions)
   - [Performance Checks](#performance-checks)
+    - [HTML Validation](#html-validation)
+    - [CSS Validation](#css-validation)
+    - [JavaScript Validation](#javascript-validation)
+    - [Lighthouse Performance Checks](#lighthouse-performance-checks)
+- [Deployment](#deployment)
+  - [Quote Diary Project Structure](#quote-diary-project-structure)
+  - [Development (Running Locally)](#development-running-locally)
+  - [Live Deployment (Heroku)](#live-deployment-heroku)
+- [Security Measures](#security-measures)
 - [Credits](#credits)
 - [Contributions](#contributions)
 
 # Project Overview
 
-Being an avid reader who is dedicated to self-improvement, quotes have always provided me with inspiration. I usually write them down in my phone's Notes app in case I need them later. But I would prefer if there was a user-friendly web platform available for this. 
+Being an avid reader who is dedicated to self-improvement, quotes have always provided me with inspiration. I usually write them down in my phone's Notes app in case I need them later, however, I would prefer if there was a user-friendly web platform available for this. 
 
-Existing services frequently need a laborious registration process, require linking accounts, or bombard users with emails and messages. My objective was to create a system that accomplishes its primary objective and offers a quick and seamless user interface with few obstacles to access.
+Existing services frequently result in a laborious registration process, require linking accounts, or likely spam users with emails and messages. My objective was to create a system that accomplishes its primary objective and offers a quick and seamless user interface with few obstacles to access.
 
 Here are the deployed links :
 
@@ -40,14 +58,14 @@ Here are the User Stories that I set out to meet and the outcome upon finalised 
 
 | User Stories | Fulfillment |
 | ------------ | ----------- |
-| **User Registration**: "As a literature enthusiast, I want to easily register for an account with a username and password, so that I can quickly access and use the Quote Diary." | My project provides a straightforward registration process where users can sign up with a username and password, ensuring easy access to the Quote Diary. This will be improved in future development |
-| **Quote Management**: "As a reflective journal keeper, I want to have immediate access to create, read, update, and delete quotes, so that I can efficiently manage my collection within the Quote Diary." | My project allows users to create, read, update, and delete quotes, providing full CRUD functionality for efficient management of quote collections. This will be improved in future development. |
+| **User Registration**: "As a user of the Quote Diary, I want to easily register for an account with a username and password, so that I can quickly access and use my Quote Diary." | My project provides a straightforward registration process where users can sign up with a username and password, ensuring easy access to Quote Diary. This will be improved in future development |
+| **Quote Management**: "As a user who is interested in reflective journal keeping, I want to have immediate access to create, read, update, and delete quotes, so that I can efficiently manage my collection within my Quote Diary." | My project allows users to create, read, update, and delete quotes, providing full CRUD functionality for efficient management of quote collections. This will be improved in future development. |
 | **Navigation and Search Capability**: "As a user of the Quote Diary, I want to be able to navigate back to my quotes easily and search for specific ones, so that I can efficiently find and reference quotes whenever needed." | My project ensures easy navigation for users to access their quotes and includes a search functionality for quick retrieval of specific quotes, enhancing user experience. |
 | **Mobile-Friendly Viewing**: "As a user of the Quote Diary, I want the platform to be optimised for viewing on mobile devices, ensuring that the layout and functionality remain intact and user-friendly on smaller screens." | My project is designed to be responsive, providing an optimal viewing and interaction experience across various devices, including tablets, desktop computers, and mobile devices. This ensures that users can access and use the Quote Diary seamlessly on any device. |
 
 ## Design Decisions
 
-In order to ensure optimal viewing and interaction across a variety of devices, including tablets, desktop computers, and mobile devices, the website was created with an easy-to-use but responsive structure.
+In order to ensure optimal viewing and interaction across a variety of devices, including tablets, desktop computers, and mobile devices, the website was created with an easy-to-use but responsive structure. Here is some further information that highlights my design decisions :
 
 ## Wireframes
 
@@ -63,28 +81,24 @@ Below are the wireframes designed for my key pages, illustrating the planned lay
 
 ## Features and Functionalities
 
-- **User Registration**: Users can easily register for an account on the Quote Diary platform, providing them with personalised access to create a diary of their favorite quotes
+- **User Registration**: Users can easily register for an account on the Quote Diary platform, providing them with personalised access to create a diary of their favorite quotes.
   
 - **Convenient Login**: Once registered, users can conveniently log in to the platform using their credentials, ensuring seamless access to their personalised quote collection.
 
-- **Quote Management**: Users have the ability to add their favorite quotes to their list within the platform. This feature allows for easy access and reference to them for inspiration or reflection.
+- **Quote Management**: Users have the ability to add their favorite quotes to their list within the platform. This feature allows for easy access and reference to them for future inspiration, or reflection.
  
-- **Efficient Search Functionality**: The platform includes a robust search feature that enables users to quickly find specific quotes by keyword, enhancing user experience and saving time.
+- **Efficient Search Functionality**: The platform includes a search feature that enables users to quickly find specific quotes by keyword, enhancing user experience and saving time.
 
 - **Secure Logout**: Users can securely log out of the platform at any time, ensuring the privacy and security of their account information and personal data.
 
 ## Scope
 
 - **Skeleton**: The layout design prioritised simplicity and intuitive navigation, with a responsive design ensuring accessibility across various devices. The platform was designed to be navigable for users with disabilities, adhering to WCAG guidelines for accessibility.
-- **Structure**: I organised the website layout to reduce clutter and make it easier for users to find what they're looking for. 
-
-I chose a simple dark and clean background. I chose this primarily because I did not want anything to stand out too much and take away from the core concept of the project, which is reflection of the quote itself, rather than the appearance of the project. I relied heavily on Boostrap for this.
-
-This background may be seen as too dark for the project. This would be something I would consider at another stage of development in the future and I would like to implement different modes, such as dark or light. This will help customise the project to users wishes. **I did not have the time to consider this at this stage of the MVP**
+- **Structure**: I organised the website layout to reduce clutter and make it easier for users to find what they're looking for. I chose a simple dark and clean background. I chose this primarily because I did not want anything to stand out too much and take away from the core concept of the project, which is reflection of the quote itself, rather than the appearance of the project. I relied heavily on Boostrap for this. This background may be seen as too dark for the project. This would be something I would consider at another stage of development in the future and I would like to implement different modes, such as dark or light. This will help customise the project to users wishes. **I did not have the time to consider this at this stage of the MVP**
 
 ## Fonts
 
-- **"Roboto"** for its clarity and readability, enhancing the ease of reading quotes. I wanted to avoid any 'tacky' font that I had seen on other online services.
+- **"Roboto"** for its clarity and readability, enhancing the ease of reading quotes. I wanted to avoid any 'tacky' hard to read font that I had seen on other online services.
 - **"sans-serif"** as a backup font
 
 ## User Flow
@@ -133,7 +147,7 @@ The `Quote` model stores the individual quotes added by users, linking them back
 
 ### Design Rationale
 
-The design of the database schema minimises redundancy by following normalisation principles, which ensure effective data management and integrity. The clear separation of quote storage from user management and the relationship definitions allow for robust functionality that is specific to the needs of the application.
+The design of the database schema minimises redundancy by following normalisation principles, which ensure effective data management and integrity. Clear separation of quote storage from user management and the relationship definitions allow for robust functionality that is specific to the needs of the application.
 
 ### Schema Visualisation
 
@@ -166,7 +180,7 @@ Relationships:
 
 # Technologies Used
 
-The combination of these technologies provides a robust platform for QuoteDiary, from user interface design to database management and deployment :
+The combination of the following technologies provides a robust platform for QuoteDiary, from user interface design to database management and deployment :
 
 ### Languages
 
